@@ -11,6 +11,7 @@ const userSlice = createSlice({
       state.error = action.error.message;
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.error = null;
       state.isLoading = false;
       state.content = action.payload;
     });

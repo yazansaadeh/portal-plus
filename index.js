@@ -1,10 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const keys = require("./config/keys");
 const User = require("./models/user");
 const userRouter = require("./routes/user");
 
@@ -21,7 +21,7 @@ mongoose
   });
 
 const sessionConfig = {
-  secret: keys.cookieKey,
+  secret: process.env.COOCKIE_KEY,
   resave: "false",
   saveUninitialized: "true",
   cookie: {

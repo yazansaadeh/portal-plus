@@ -18,15 +18,14 @@ function LoginForm() {
     },
   });
   useEffect(() => {
-    console.log(error);
-
+    console.log(error, content);
     if (error) {
       navigate("/login");
     }
     if (!error && content) {
       navigate("/dashboard");
     }
-  }, [error, content]);
+  }, [error, content, navigate]);
   const onSubmit = (data) => {
     dispatch(
       loginUser({
