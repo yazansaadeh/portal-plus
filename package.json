@@ -1,0 +1,28 @@
+{
+  "name": "portal-plus-ts",
+  "version": "1.0.0",
+  "description": "This is our graduation project me and my team",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix portal-plus-frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.1",
+    "body-parser": "^1.20.2",
+    "concurrently": "^8.2.2",
+    "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "http-proxy-middleware": "^2.0.6",
+    "mongoose": "^8.1.3",
+    "nodemon": "^3.0.3",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
+  }
+}
