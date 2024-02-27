@@ -2,7 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LoginField from "./LoginField";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../store";
+import { loginUser } from "../../store";
 import { useEffect } from "react";
 
 function LoginForm() {
@@ -11,7 +11,7 @@ function LoginForm() {
     return state.auth;
   });
   const dispatch = useDispatch();
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {
       username: "",
       password: "",
@@ -59,7 +59,7 @@ function LoginForm() {
                       fieldState={fieldState}
                       placeholder="الرقم الجامعي"
                       type="text"
-                      value={watch("username")}
+                      error={error}
                     />
                   )}
                 />
@@ -77,7 +77,7 @@ function LoginForm() {
                       fieldState={fieldState}
                       type="password"
                       placeholder="كلمة المرور"
-                      value={watch("password")}
+                      error={error}
                     />
                   )}
                 />

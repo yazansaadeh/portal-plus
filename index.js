@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const User = require("./models/user");
 const userRouter = require("./routes/user");
+const courseRouter = require("./routes/course");
 
 const app = express();
 
@@ -40,4 +41,5 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(userRouter);
+app.use(courseRouter);
 app.listen(5000);
