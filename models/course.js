@@ -15,13 +15,16 @@ const courseSchema = new Schema({
   time: {
     type: String,
     required: true,
-    unique: true,
   },
   doctorName: {
     type: String,
     required: true,
   },
   location: {
+    type: String,
+    required: true,
+  },
+  major: {
     type: String,
     required: true,
   },

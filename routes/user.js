@@ -5,12 +5,13 @@ const isLogin = require("../middlewares/isLogin");
 
 const router = express.Router();
 
-router.get("/create_user", isLogin, async (req, res) => {
+router.get("/create_user", async (req, res) => {
   const user = new User({
     rule: "doctor",
-    username: "34235653452",
+    major: "BIT",
+    username: "44",
   });
-  const newUser = await User.register(user, "222");
+  const newUser = await User.register(user, "44");
   res.send(newUser);
 });
 

@@ -7,7 +7,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  course: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+  major: {
+    type: String,
+    required: true,
+  },
 });
 
 userSchema.plugin(passportLocalMongoose);

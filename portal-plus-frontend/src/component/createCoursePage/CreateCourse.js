@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createCourse } from "../../store";
 
 function CreateCourse() {
-  const { error, content, isLoading } = useSelector((state) => {
+  const { error } = useSelector((state) => {
     return state.course;
   });
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ function CreateCourse() {
       time: "",
       doctorName: "",
       location: "",
+      major: "",
     },
   });
   const COURSEFIELD = [
@@ -35,6 +36,11 @@ function CreateCourse() {
       label: "موقع المحاضرة",
       message: "يجب ادخال موقع المحاضرة",
     },
+    {
+      name: "major",
+      label: "اسم التخصص",
+      message: "يجب ادخال اسم التخصص",
+    },
   ];
   const onSubmit = (data) => {
     dispatch(
@@ -44,6 +50,7 @@ function CreateCourse() {
         time: data.time,
         doctorName: data.doctorName,
         location: data.location,
+        major: data.major,
       })
     );
   };
@@ -76,7 +83,7 @@ function CreateCourse() {
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderedCourseField}
         <div>
-          <button type="submit">تسجيل الدخول </button>
+          <button type="submit">تسجيل المادة </button>
         </div>
       </form>
     </div>

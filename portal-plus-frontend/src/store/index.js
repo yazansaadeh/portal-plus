@@ -11,4 +11,4 @@ const store = configureStore({
 
 export { store };
 export * from "./thunks/loginUser";
-export * from "./thunks/createCourse";
+export * from "./thunks/course";
