@@ -1,4 +1,4 @@
-function Field({ field, fieldState, placeholder, value }) {
+function Field({ field, fieldState, placeholder, error }) {
   return (
     <div>
       <input
@@ -6,11 +6,11 @@ function Field({ field, fieldState, placeholder, value }) {
         type="text"
         {...field}
         placeholder={placeholder}
-        value={value}
       />
       {fieldState.error && (
         <p className="text-red-500">{fieldState.error.message}</p>
       )}
+      {error ? <p className="text-red-500">لا يوجد مادة بهذا الرقم</p> : ""}
     </div>
   );
 }

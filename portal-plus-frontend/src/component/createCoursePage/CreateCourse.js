@@ -1,14 +1,22 @@
 import { useForm, Controller } from "react-hook-form";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import CourseField from "./CourseField";
 import { useDispatch, useSelector } from "react-redux";
 import { createCourse } from "../../store";
+import { useEffect, useState } from "react";
 
 function CreateCourse() {
-  const { error } = useSelector((state) => {
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(true);
+
+  const handleCloseSnackbar = () => {
+    setIsSnackbarOpen(false);
+  };
+  const { error, data } = useSelector((state) => {
     return state.course;
   });
   const dispatch = useDispatch();
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       courseId: "",
       courseName: "",
@@ -54,6 +62,31 @@ function CreateCourse() {
       })
     );
   };
+  let content;
+  useEffect(() => {
+    if (data.length > 0) {
+      reset();
+    }
+  }, [data, reset]);
+  if (data.length > 0) {
+    content = (
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        className=""
+        open={isSnackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          className="bg-green-500 text-white"
+        >
+          تم نسجيل المادة بنجاح
+        </Alert>
+      </Snackbar>
+    );
+  }
 
   const renderedCourseField = COURSEFIELD.map((field) => {
     return (
@@ -80,8 +113,13 @@ function CreateCourse() {
 
   return (
     <div>
+      {content}
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderedCourseField}
+        <p className="text-center text-red-500 mb-5">
+          {error ? "رقم المادة او اسم المادة مكرران" : ""}
+        </p>
+
         <div>
           <button type="submit">تسجيل المادة </button>
         </div>

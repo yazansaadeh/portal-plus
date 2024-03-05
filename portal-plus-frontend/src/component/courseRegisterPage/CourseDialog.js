@@ -10,7 +10,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourses } from "../store";
+import { getCourses } from "../../store";
 
 const CourseDialog = ({ open, onClose, setValue }) => {
   const dispatch = useDispatch();
@@ -18,11 +18,13 @@ const CourseDialog = ({ open, onClose, setValue }) => {
     return state.course;
   });
   useEffect(() => {
-    dispatch(getCourses());
-  }, []);
+    if (open) {
+      dispatch(getCourses());
+    }
+  }, [dispatch, open]);
 
   const handleClick = (data) => {
-    setValue(data.courseId);
+    setValue("courseId", data.courseId);
     onClose();
   };
 
@@ -47,7 +49,6 @@ const CourseDialog = ({ open, onClose, setValue }) => {
           className="rounded-md"
         >
           <TableCell>
-            {" "}
             <Button onClick={() => handleClick(row)} color="primary">
               إختيار
             </Button>

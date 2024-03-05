@@ -3,12 +3,11 @@ import Button from "@mui/material/Button";
 import Field from "./Field";
 import { useDispatch, useSelector } from "react-redux";
 import { courseRegister } from "../../store";
-import CourseDialog from "../CourseDialog";
+import CourseDialog from "./CourseDialog";
 import { useState } from "react";
 
 function CourseRegister() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
   const handleOpenDialog = () => {
@@ -19,11 +18,12 @@ function CourseRegister() {
     setIsDialogOpen(false);
   };
 
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     defaultValues: {
       courseId: "",
     },
   });
+
   const { error } = useSelector((state) => {
     return state.course;
   });
@@ -62,7 +62,6 @@ function CourseRegister() {
                 fieldState={fieldState}
                 placeholder="رقم المادة"
                 error={error}
-                value={value}
               />
             )}
           />

@@ -18,5 +18,9 @@ const getCourses = createAsyncThunk("/api/get_courses", async () => {
   const res = await axios.get("/api/get_courses");
   return res.data;
 });
+const getUserCourse = createAsyncThunk("/api/get_user_course", async () => {
+  const res = await axios.get("/api/get_user_course");
+  return res.data;
+});
 
-export { createCourse, courseRegister, getCourses };
+export { createCourse, courseRegister, getCourses, getUserCourse };

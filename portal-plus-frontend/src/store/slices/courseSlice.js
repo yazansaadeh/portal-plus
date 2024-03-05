@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { courseRegister, createCourse, getCourses } from "../thunks/course";
+import {
+  courseRegister,
+  createCourse,
+  getCourses,
+  getUserCourse,
+} from "../thunks/course";
 
 const courseSlice = createSlice({
   name: "course",
@@ -7,12 +12,13 @@ const courseSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createCourse.pending, (state, action) => {
+      state.error = null;
       state.isLoading = true;
     });
     builder.addCase(createCourse.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      state.data.push(...action.payload);
+      state.data.push(action.payload);
     });
     builder.addCase(createCourse.rejected, (state, action) => {
       state.isLoading = false;
@@ -39,6 +45,18 @@ const courseSlice = createSlice({
       state.data.push(...action.payload);
     });
     builder.addCase(getCourses.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(getUserCourse.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getUserCourse.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.data.push(...action.payload);
+    });
+    builder.addCase(getUserCourse.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });
