@@ -2,7 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import LoginField from "./LoginField";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../store";
+import { login } from "../../store";
 import { useEffect } from "react";
 
 function LoginForm() {
@@ -24,7 +24,7 @@ function LoginForm() {
   }, [error, content, navigate]);
   const onSubmit = (data) => {
     dispatch(
-      loginUser({
+      login({
         username: data.username,
         password: data.password,
       })

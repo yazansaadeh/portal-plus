@@ -4,22 +4,71 @@ import CreateCourse from "./component/createCoursePage/CreateCourse";
 import CourseRegister from "./component/courseRegisterPage/CourseRegister";
 import UserCourse from "./component/UserCourse";
 import LandingPage from "./component/LandingPage";
+import Map from "./component/Map";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
 
 const Dashboard = () => {
   return <div>Dashboard</div>;
 };
 function App() {
   return (
-    <div className="container">
+    <div>
       <Router>
-        <div className="container">
+        <div>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/createCourse" element={<CreateCourse />} />
-            <Route path="/courseRegister" element={<CourseRegister />} />
-            <Route path="/userCourse" element={<UserCourse />} />
+            <Route
+              path="/dashboard"
+              element={
+                <div>
+                  <Header />
+                  <Dashboard />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/createCourse"
+              element={
+                <div>
+                  <Header />
+                  <CreateCourse />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/courseRegister"
+              element={
+                <div>
+                  <Header />
+                  <CourseRegister />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/userCourse"
+              element={
+                <div>
+                  <Header />
+                  <UserCourse />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/map"
+              element={
+                <div>
+                  <Header />
+                  <Map />
+                  <Footer />
+                </div>
+              }
+            />
           </Routes>
         </div>
       </Router>

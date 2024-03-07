@@ -10,5 +10,5 @@ const store = configureStore({
 });
 
 export { store };
-export * from "./thunks/loginUser";
+export * from "./thunks/user";
 export * from "./thunks/course";

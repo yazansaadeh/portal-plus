@@ -1,21 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser } from "../thunks/loginUser";
+import { login, getName } from "../thunks/user";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: { content: null, isLoading: false, error: null },
+  initialState: { content: null, isLoading: false, error: null, name: "" },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loginUser.rejected, (state, action) => {
+    builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });
-    builder.addCase(loginUser.fulfilled, (state, action) => {
+    builder.addCase(login.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
       state.content = action.payload;
     });
-    builder.addCase(loginUser.pending, (state, action) => {
+    builder.addCase(login.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getName.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(getName.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.name = action.payload;
+    });
+    builder.addCase(getName.pending, (state, action) => {
       state.isLoading = true;
     });
   },
