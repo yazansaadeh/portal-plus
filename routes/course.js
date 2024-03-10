@@ -61,5 +61,25 @@ router.get("/api/get_user_course", isLogin, async (req, res) => {
     .exec();
   res.send(userCourse);
 });
+router.post("/api/delete_course", isLogin, async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    // Find and delete the course by courseId
+    const deletedCourse = await Enrollment.findOneAndDelete({
+      user: req.user.id,
+      course: id,
+    });
+
+    if (!deletedCourse) {
+      return res.status(404).send({ error: "Course not found" });
+    }
+
+    res.send(deletedCourse);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Internal Server Error" });
+  }
+});
 
 module.exports = router;

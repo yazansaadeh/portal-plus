@@ -22,5 +22,15 @@ const getUserCourse = createAsyncThunk("/api/get_user_course", async () => {
   const res = await axios.get("/api/get_user_course");
   return res.data;
 });
+const deleteCourse = createAsyncThunk("/api/delete_course", async (values) => {
+  const res = await axios.post("/api/delete_course", values);
+  return res.data;
+});
 
-export { createCourse, courseRegister, getCourses, getUserCourse };
+export {
+  createCourse,
+  courseRegister,
+  getCourses,
+  getUserCourse,
+  deleteCourse,
+};

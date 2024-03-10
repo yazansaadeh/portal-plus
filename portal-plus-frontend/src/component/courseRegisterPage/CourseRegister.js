@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { courseRegister } from "../../store";
 import CourseDialog from "./CourseDialog";
 import { useState } from "react";
+import UserCourse from "../UserCourse";
 
 function CourseRegister() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -70,6 +71,7 @@ function CourseRegister() {
           <button type="submit">تسجيل</button>
         </div>
       </form>
+      <UserCourse />
     </div>
   );
 }

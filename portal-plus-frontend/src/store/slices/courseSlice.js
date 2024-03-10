@@ -4,11 +4,12 @@ import {
   createCourse,
   getCourses,
   getUserCourse,
+  deleteCourse,
 } from "../thunks/course";
 
 const courseSlice = createSlice({
   name: "course",
-  initialState: { data: [], isLoading: false, error: null },
+  initialState: { data: [], userData: [], isLoading: false, error: null },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createCourse.pending, (state, action) => {
@@ -28,9 +29,11 @@ const courseSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(courseRegister.fulfilled, (state, action) => {
+      console.log(state.userData);
+      console.log(action.payload);
       state.error = null;
       state.isLoading = false;
-      state.data.push(...action.payload);
+      state.userData.push(...action.payload);
     });
     builder.addCase(courseRegister.rejected, (state, action) => {
       state.isLoading = false;
@@ -54,9 +57,23 @@ const courseSlice = createSlice({
     builder.addCase(getUserCourse.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      state.data.push(...action.payload);
+      state.userData.push(...action.payload);
     });
     builder.addCase(getUserCourse.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(deleteCourse.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteCourse.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.userData = state.userData.filter((course) => {
+        return course._id !== action.payload._id;
+      });
+    });
+    builder.addCase(deleteCourse.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });
