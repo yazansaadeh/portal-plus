@@ -14,7 +14,7 @@ import {
 
 function UserCourse() {
   const dispatch = useDispatch();
-  const { userData, error, isLoading } = useSelector((state) => {
+  const { userData } = useSelector((state) => {
     return state.course;
   });
   useEffect(() => {
@@ -29,17 +29,15 @@ function UserCourse() {
   let content;
 
   if (userData.length > 0) {
-    const renderedData = userData.map((row, index) => {
-      return row.course[0];
-    });
-    content = renderedData.map((row) => {
+    content = userData.map((row, index) => {
       if (window.location.pathname === "/courseRegister") {
         showDeleteBtn = (
           <Button
+            key={row.course.id}
             color="error"
             variant="contained"
             onClick={() => {
-              handleDeleteCourse(row._id);
+              handleDeleteCourse(row.course._id);
             }}
           >
             حذف
@@ -47,13 +45,13 @@ function UserCourse() {
         );
       }
       return (
-        <TableRow key={row.id}>
+        <TableRow key={row.course.id}>
           <TableCell>{showDeleteBtn}</TableCell>
-          <TableCell>{row.courseId}</TableCell>
-          <TableCell>{row.courseName}</TableCell>
-          <TableCell>{row.time}</TableCell>
-          <TableCell>{row.location}</TableCell>
-          <TableCell>{row.doctorName}</TableCell>
+          <TableCell>{row.course.courseId}</TableCell>
+          <TableCell>{row.course.courseName}</TableCell>
+          <TableCell>{row.course.time}</TableCell>
+          <TableCell>{row.course.location}</TableCell>
+          <TableCell>{row.course.doctorName}</TableCell>
         </TableRow>
       );
     });

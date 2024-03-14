@@ -45,7 +45,11 @@ router.post("/api/course_register", isLogin, async (req, res) => {
       user: req.user.id,
       course: course.id,
     });
-    enrollment.save();
+    const savedEnrollment = await enrollment.save();
+    const populatedEnrollment = await Enrollment.populate(savedEnrollment, {
+      path: "course",
+    });
+    res.send(populatedEnrollment);
   } else {
     return res.status(401).send({ error: "لا يوجد مادة بهذا الرقم" });
   }

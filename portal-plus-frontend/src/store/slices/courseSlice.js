@@ -29,11 +29,9 @@ const courseSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(courseRegister.fulfilled, (state, action) => {
-      console.log(state.userData);
-      console.log(action.payload);
       state.error = null;
       state.isLoading = false;
-      state.userData.push(...action.payload);
+      state.userData.push(action.payload);
     });
     builder.addCase(courseRegister.rejected, (state, action) => {
       state.isLoading = false;

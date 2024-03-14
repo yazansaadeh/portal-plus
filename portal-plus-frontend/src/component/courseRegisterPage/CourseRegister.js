@@ -25,7 +25,7 @@ function CourseRegister() {
     },
   });
 
-  const { error } = useSelector((state) => {
+  const { error, userData } = useSelector((state) => {
     return state.course;
   });
   const onSubmit = (data) => {
@@ -35,6 +35,7 @@ function CourseRegister() {
       })
     );
   };
+  // console.log(userData);
 
   return (
     <div>
