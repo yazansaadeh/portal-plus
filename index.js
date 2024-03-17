@@ -8,6 +8,7 @@ const session = require("express-session");
 const User = require("./models/user");
 const userRouter = require("./routes/user");
 const courseRouter = require("./routes/course");
+const attendanceRouter = require("./routes/attendance");
 
 const app = express();
 
@@ -42,4 +43,5 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(userRouter);
 app.use(courseRouter);
+app.use(attendanceRouter);
 app.listen(5000);

@@ -7,6 +7,8 @@ import LandingPage from "./component/LandingPage";
 import Map from "./component/Map";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import UserProfile from "./component/UserProfile";
+import GenerateQRCode from "./component/GenerateQRCode";
 
 const Dashboard = () => {
   return <div>Dashboard</div>;
@@ -65,6 +67,26 @@ function App() {
                 <div>
                   <Header />
                   <Map />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <div>
+                  <Header />
+                  <UserProfile />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/generateQRCode"
+              element={
+                <div>
+                  <Header />
+                  <GenerateQRCode />
                   <Footer />
                 </div>
               }
