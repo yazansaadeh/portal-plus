@@ -14,7 +14,7 @@ import {
 
 function UserCourse() {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => {
+  const { userData, userAttendance } = useSelector((state) => {
     return state.course;
   });
   useEffect(() => {
@@ -44,6 +44,13 @@ function UserCourse() {
           </Button>
         );
       }
+      const userCourseAttendance = userAttendance.filter((course) => {
+        return course.courseId === row.course.courseId;
+      });
+      // let numberOfAbsence = 0;
+      // if (userCourseAttendance.length > 7) {
+      //   numberOfAbsence = "محروم";
+      // }
       return (
         <TableRow key={row.course.id}>
           <TableCell>{showDeleteBtn}</TableCell>
@@ -52,6 +59,11 @@ function UserCourse() {
           <TableCell>{row.course.time}</TableCell>
           <TableCell>{row.course.location}</TableCell>
           <TableCell>{row.course.doctorName}</TableCell>
+          <TableCell>
+            {userCourseAttendance.length > 7
+              ? "محروم"
+              : userCourseAttendance.length}
+          </TableCell>
         </TableRow>
       );
     });
@@ -70,6 +82,7 @@ function UserCourse() {
             <TableCell>الوقت</TableCell>
             <TableCell>المكان</TableCell>
             <TableCell>إسم المدرس</TableCell>
+            <TableCell>عدد الغيابات</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{content}</TableBody>

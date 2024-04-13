@@ -9,8 +9,8 @@ router.get("/create_user", async (req, res) => {
   const user = new User({
     rule: "doctor",
     major: "CS",
-    username: "66",
-    name: "عبادة سالم معيوف السوالمة",
+    username: "77",
+    name: "عبدالله الهزايمة",
   });
   const newUser = await User.register(user, "44");
   res.send(newUser);

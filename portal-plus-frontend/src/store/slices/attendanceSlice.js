@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { generateQRCode } from "../thunks/attendance";
+import { generateQRCode, scanQRCode } from "../thunks/attendance";
 
 const attendanceSlice = createSlice({
   name: "attendance",
@@ -15,6 +15,18 @@ const attendanceSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(generateQRCode.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(scanQRCode.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(scanQRCode.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(scanQRCode.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });

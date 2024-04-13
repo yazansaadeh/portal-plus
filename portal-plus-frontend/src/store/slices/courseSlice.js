@@ -9,7 +9,13 @@ import {
 
 const courseSlice = createSlice({
   name: "course",
-  initialState: { data: [], userData: [], isLoading: false, error: null },
+  initialState: {
+    data: [],
+    userData: [],
+    isLoading: false,
+    error: null,
+    userAttendance: [],
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createCourse.pending, (state, action) => {
@@ -55,7 +61,9 @@ const courseSlice = createSlice({
     builder.addCase(getUserCourse.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      state.userData.push(...action.payload);
+      console.log(action.payload);
+      state.userData.push(...action.payload.userCourse);
+      state.userAttendance.push(...action.payload.attendance);
     });
     builder.addCase(getUserCourse.rejected, (state, action) => {
       state.isLoading = false;

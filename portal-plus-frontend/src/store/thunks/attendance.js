@@ -8,5 +8,17 @@ const generateQRCode = createAsyncThunk(
     return res.data;
   }
 );
+const scanQRCode = createAsyncThunk("/api/scanQRCode", async (values) => {
+  const res = await axios.post("/api/scanQRCode", values);
+  return res.data;
+});
 
-export { generateQRCode };
+const takeAttendance = createAsyncThunk(
+  "/api/takeAttendance",
+  async (values) => {
+    const res = await axios.post("/api/takeAttendance", values);
+    return res.data;
+  }
+);
+
+export { generateQRCode, scanQRCode, takeAttendance };

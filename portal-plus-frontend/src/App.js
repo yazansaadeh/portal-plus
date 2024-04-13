@@ -8,7 +8,8 @@ import Map from "./component/Map";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import UserProfile from "./component/UserProfile";
-import GenerateQRCode from "./component/GenerateQRCode";
+import GenerateQRCode from "./component/QRCode/GenerateQRCode";
+import ScanQRCode from "./component/QRCode/ScanQRCode";
 
 const Dashboard = () => {
   return <div>Dashboard</div>;
@@ -87,6 +88,16 @@ function App() {
                 <div>
                   <Header />
                   <GenerateQRCode />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route
+              path="/scanQRCode"
+              element={
+                <div>
+                  <Header />
+                  <ScanQRCode />
                   <Footer />
                 </div>
               }

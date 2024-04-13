@@ -2,6 +2,7 @@ const express = require("express");
 const Course = require("../models/course");
 const isLogin = require("../middlewares/isLogin");
 const Enrollment = require("../models/enrollment");
+const Attendance = require("../models/attendance");
 
 const router = express.Router();
 
@@ -63,7 +64,11 @@ router.get("/api/get_user_course", isLogin, async (req, res) => {
   const userCourse = await Enrollment.find({ user: req.user.id })
     .populate("course")
     .exec();
-  res.send(userCourse);
+  const attendance = await Attendance.find({
+    userId: req.user.id,
+    attend: false,
+  });
+  res.send({ userCourse, attendance });
 });
 router.post("/api/delete_course", isLogin, async (req, res) => {
   const { id } = req.body;
