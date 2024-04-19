@@ -23,7 +23,7 @@ mongoose
   });
 
 const sessionConfig = {
-  secret: process.env.COOCKIE_KEY,
+  secret: 'dkuafgsdfkugchvjsCSDCSDFAVFDhvkghghgfhfghfhIHCKN',
   resave: "false",
   saveUninitialized: "true",
   cookie: {

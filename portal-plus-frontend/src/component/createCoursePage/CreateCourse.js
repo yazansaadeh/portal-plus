@@ -27,13 +27,13 @@ function CreateCourse() {
     },
   });
   const COURSEFIELD = [
-    { name: "courseId", label: "رقم المادة", message: "يجب ادخال رقم المادة" },
+    { name: "courseId", label: "رقم الماده", message: "يجب ادخال رقم الماده" },
     {
       name: "courseName",
-      label: "اسم المادة",
-      message: "يجب ادخال اسم المادة",
+      label: "اسم الماده",
+      message: "يجب ادخال اسم الماده",
     },
-    { name: "time", label: "وقت المادة", message: "يجب ادخال وقت المادة" },
+    { name: "time", label: "وقت الماده", message: "يجب ادخال وقت الماده" },
     {
       name: "doctorName",
       label: "اسم المدرس",
@@ -82,7 +82,7 @@ function CreateCourse() {
           severity="success"
           className="bg-green-500 text-white"
         >
-          تم نسجيل المادة بنجاح
+          تم نسجيل الماده بنجاح
         </Alert>
       </Snackbar>
     );
@@ -90,7 +90,7 @@ function CreateCourse() {
 
   const renderedCourseField = COURSEFIELD.map((field) => {
     return (
-      <label key={field.name}>
+      <label key={field.name} className="text-[#354d7a] text-xl py-6 my-6">
         {field.label}
         <Controller
           name={field.name}
@@ -112,16 +112,16 @@ function CreateCourse() {
   });
 
   return (
-    <div>
+    <div className="flex justify-center items-center text-center">
       {content}
       <form onSubmit={handleSubmit(onSubmit)}>
         {renderedCourseField}
         <p className="text-center text-red-500 mb-5">
-          {error ? "رقم المادة او اسم المادة مكرران" : ""}
+          {error ? "رقم الماده او اسم المادة مكرران" : ""}
         </p>
 
-        <div>
-          <button type="submit">تسجيل المادة </button>
+        <div className="flex justify-center items-center">
+          <button type="submit" className="bg-[#354d7a] text-white rounded-xl px-12 py-3 flex">تسجيل المادة </button>
         </div>
       </form>
     </div>

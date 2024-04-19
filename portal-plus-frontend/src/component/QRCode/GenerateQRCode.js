@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function GenerateQRCode() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleConfirm = () => {
     setIsDialogOpen(false);
@@ -23,15 +24,13 @@ function GenerateQRCode() {
       );
     }, 7000);
 
-    // Set a timeout for 5 minutes
     setTimeout(() => {
-      clearInterval(intId); // Clear the interval after 5 minutes
-    }, 20000); // 5 minutes in milliseconds
+      clearInterval(intId); 
+    }, 20000);
   };
-  const dispatch = useDispatch();
-  const { data, error } = useSelector((state) => {
-    return state.attendance;
-  });
+
+  const { data, error } = useSelector((state) => state.attendance);
+
   const { handleSubmit, control, watch } = useForm({
     defaultValues: {
       courseId: "",
@@ -43,16 +42,18 @@ function GenerateQRCode() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center  space-y-6 h-auto my-12">
       <ConfirmGenerateDialog open={isDialogOpen} onConfirm={handleConfirm} />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          ادخل رقم المادة
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md">
+        <label className="block mb-6 text-center text-2xl space-y-3 text-[#354d7a]">
+                    ادخل رقم الماده
+        </label>
+        <label className="block mb-6 text-center text-2xl space-y-3">
           <Controller
             name="courseId"
             control={control}
             rules={{
-              required: "يجب ادخال رقم المادة",
+              required: "يجب ادخال رقم الماده",
             }}
             render={({ field, fieldState }) => (
               <div>
@@ -60,25 +61,31 @@ function GenerateQRCode() {
                   className="border rounded-md px-4 py-2 w-full focus:outline-none focus:border-blue-500"
                   type="text"
                   {...field}
-                  placeholder="رقم المادة"
+                  placeholder="رقم الماده"
                 />
                 {fieldState.error && (
                   <p className="text-red-500">{fieldState.error.message}</p>
                 )}
                 {
                   <p className="text-red-500">
-                    {error ? "يجب ان تكون مدرس في هذه المادة" : ""}
+                    {error ? "يجب ان تكون مدرس في هذه الماده" : ""}
                   </p>
                 }
               </div>
             )}
           />
         </label>
-        <div>
-          <button type="submit">إنشاء</button>
+        <div className="flex justify-center">
+          <button type="submit" className="bg-[#354d7a] text-white rounded-xl px-12 py-2 flex justify-center items-center text-xl">إنشاء</button>
         </div>
       </form>
-      {data ? <img src={data} alt="QRCode" /> : ""}
+      {data && (
+        <img
+          src={data}
+          alt="QRCode"
+          className="mt-8 max-w-full  md:max-h-96"
+        />
+      )}
     </div>
   );
 }
