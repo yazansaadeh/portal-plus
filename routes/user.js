@@ -26,4 +26,11 @@ router.get("/api/get_name", isLogin, (req, res) => {
   }
 });
 
+router.get("/api/isLogin", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.send(true);
+  }
+  res.send(false);
+});
+
 module.exports = router;

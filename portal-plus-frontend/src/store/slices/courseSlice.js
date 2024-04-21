@@ -61,7 +61,6 @@ const courseSlice = createSlice({
     builder.addCase(getUserCourse.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      console.log(action.payload);
       state.userData.push(...action.payload.userCourse);
       state.userAttendance.push(...action.payload.attendance);
     });

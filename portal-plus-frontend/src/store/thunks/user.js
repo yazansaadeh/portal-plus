@@ -10,4 +10,8 @@ const getName = createAsyncThunk("/api/get_name", async () => {
   const res = await axios.get("/api/get_name");
   return res.data;
 });
-export { login, getName };
+const isAuthenticated = createAsyncThunk("/api/isLogin", async () => {
+  const res = await axios.get("/api/isLogin");
+  return res.data;
+});
+export { login, getName, isAuthenticated };
