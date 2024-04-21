@@ -6,6 +6,7 @@ import { courseRegister } from "../../store";
 import CourseDialog from "./CourseDialog";
 import { useState } from "react";
 import UserCourse from "../UserCourse";
+import SideBar from '../SideBar'
 
 function CourseRegister() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -37,41 +38,46 @@ function CourseRegister() {
   };
 
   return (
-    <div>
+    <div className='flex justify-between items-start text-center'>
       <div>
-        <Button variant="contained" onClick={handleOpenDialog}>
-          المواد المتاحة
-        </Button>
-        <CourseDialog
-          setValue={setValue}
-          open={isDialogOpen}
-          onClose={handleCloseDialog}
-        />
+        <SideBar/>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          ادخل رقم المادة
-          <Controller
-            name="courseId"
-            control={control}
-            rules={{
-              required: "يجب ادخال رقم المادة",
-            }}
-            render={({ field, fieldState }) => (
-              <Field
-                field={field}
-                fieldState={fieldState}
-                placeholder="رقم المادة"
-                error={error}
-              />
-            )}
-          />
-        </label>
+      <div className='flex items-center w-full h-8/12 justify-center flex-col'>
         <div>
-          <button type="submit">تسجيل</button>
+          <Button variant="contained" onClick={handleOpenDialog}>
+            المواد المتاحة
+          </Button>
+          <CourseDialog
+            setValue={setValue}
+            open={isDialogOpen}
+            onClose={handleCloseDialog}
+          />
         </div>
-      </form>
-      <UserCourse />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>
+            ادخل رقم المادة
+            <Controller
+              name="courseId"
+              control={control}
+              rules={{
+                required: "يجب ادخال رقم المادة",
+              }}
+              render={({ field, fieldState }) => (
+                <Field
+                  field={field}
+                  fieldState={fieldState}
+                  placeholder="رقم المادة"
+                  error={error}
+                />
+              )}
+            />
+          </label>
+          <div>
+            <button type="submit">تسجيل</button>
+          </div>
+        </form>
+        {/* <UserCourse /> */}
+      </div>
     </div>
   );
 }

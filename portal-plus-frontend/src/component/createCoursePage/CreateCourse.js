@@ -5,6 +5,7 @@ import CourseField from "./CourseField";
 import { useDispatch, useSelector } from "react-redux";
 import { createCourse } from "../../store";
 import { useEffect, useState } from "react";
+import SideBar from '../SideBar'
 
 function CreateCourse() {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(true);
@@ -90,7 +91,7 @@ function CreateCourse() {
 
   const renderedCourseField = COURSEFIELD.map((field) => {
     return (
-      <label key={field.name} className="text-[#354d7a] text-xl py-6 my-6">
+      <label key={field.name} className="text-[#354d7a] text-xl">
         {field.label}
         <Controller
           name={field.name}
@@ -112,18 +113,23 @@ function CreateCourse() {
   });
 
   return (
-    <div className="flex justify-center items-center text-center">
-      {content}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {renderedCourseField}
-        <p className="text-center text-red-500 mb-5">
-          {error ? "رقم الماده او اسم المادة مكرران" : ""}
-        </p>
+    <div className="flex justify-between items-start text-center">
+      <div>
+        <SideBar/>
+      </div>
+      <div className='flex h-7/12 justify-center items-start w-full mt-8'>
+        {content}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {renderedCourseField}
+          <p className="text-center text-red-500 mb-5">
+            {error ? "رقم الماده او اسم المادة مكرران" : ""}
+          </p>
 
-        <div className="flex justify-center items-center">
-          <button type="submit" className="bg-[#354d7a] text-white rounded-xl px-12 py-3 flex">تسجيل المادة </button>
-        </div>
-      </form>
+          <div className="flex justify-center items-center">
+            <button type="submit" className="bg-[#354d7a] text-white rounded-xl px-12 py-3 flex">تسجيل المادة </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

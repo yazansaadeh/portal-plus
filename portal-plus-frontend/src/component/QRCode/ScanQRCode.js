@@ -3,6 +3,8 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { scanQRCode } from "../../store";
+import SideBar from '../SideBar'
+
 function ScanQRCode() {
   const [showCamera, setShowCamera] = useState(false);
   const dispatch = useDispatch();
@@ -25,18 +27,21 @@ function ScanQRCode() {
     setShowCamera(false);
   };
   return (
-    <div>
-      <Button onClick={handleClick} color="success">
-        افتح الكاميرا
-      </Button>
-      {showCamera ? (
-        <QrScanner
-          onResult={(result) => handleScannedResult(result)}
-          onError={(error) => console.log(error?.message)}
-        />
-      ) : (
-        ""
-      )}
+    <div className='flex justify-between items-start text-center'>
+      <SideBar />
+      <div className ='w-screen h-screen flex items-center justify-center'>
+        <Button onClick={handleClick} color="success">
+          افتح الكاميرا
+        </Button>
+        {showCamera ? (
+          <QrScanner
+            onResult={(result) => handleScannedResult(result)}
+            onError={(error) => console.log(error?.message)}
+          />
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }
