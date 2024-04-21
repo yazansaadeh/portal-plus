@@ -87,7 +87,7 @@ function LoginForm() {
               </p>
               <div className="flex justify-center ">
                 <button
-                  className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex"
+                  className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in"
                   type="submit"
                 >
                   تسجيل الدخول{" "}
