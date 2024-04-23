@@ -7,10 +7,10 @@ const router = express.Router();
 
 router.get("/create_user", async (req, res) => {
   const user = new User({
-    rule: "doctor",
-    major: "CS",
-    username: "77",
-    name: "عبدالله الهزايمة",
+    rule: "student",
+    major: "Software",
+    username: "88",
+    name: "ايهم عامر صالح",
   });
   const newUser = await User.register(user, "44");
   res.send(newUser);
@@ -31,6 +31,11 @@ router.get("/api/isLogin", (req, res) => {
     res.send(true);
   }
   res.send(false);
+});
+
+router.get("/api/get_rule", isLogin, (req, res) => {
+  const rule = req.user.rule || "";
+  res.send(rule);
 });
 
 module.exports = router;

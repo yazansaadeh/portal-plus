@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, getName, isAuthenticated } from "../thunks/user";
+import { login, getName, isAuthenticated, getRule } from "../thunks/user";
 
 const userSlice = createSlice({
   name: "user",
@@ -9,6 +9,7 @@ const userSlice = createSlice({
     error: null,
     name: "",
     isLogin: Boolean(localStorage.getItem("isLogin")) || false,
+    rule: "",
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -53,6 +54,18 @@ const userSlice = createSlice({
       state.isLogin = action.payload;
     });
     builder.addCase(isAuthenticated.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getRule.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(getRule.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.rule = action.payload;
+    });
+    builder.addCase(getRule.pending, (state, action) => {
       state.isLoading = true;
     });
   },

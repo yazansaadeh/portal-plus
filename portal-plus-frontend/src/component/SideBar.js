@@ -4,46 +4,74 @@ import { getName } from "../store/";
 import { useEffect, useState } from "react";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { BsArrowDown } from "react-icons/bs";
+import { getRule } from "../store/";
 
 function SideBar() {
   const dispatch = useDispatch();
-  const { name } = useSelector((state) => {
+  const { name, rule } = useSelector((state) => {
     return state.auth;
   });
 
   useEffect(() => {
     dispatch(getName());
+    dispatch(getRule());
   }, [dispatch]);
 
   // const [open, setOpen] = useState(true);
   const [subMenu, setSubMenu] = useState({}); // Use an object to track submenu state for each menu item
-  const menus = [
-    { title: "الخدمات الماليه" },
-    {
-      title: "خدمات التسجيل",
-      submenu: true,
-      submenuItems: [
-        { title: "انشاء ماده", path: "/createCourse" },
-        { title: "تسجيل ماده", path: "/courseRegister" },
-        { title: "جدول الطلب", path: "/userCourse" },
-      ],
-    },
-    { title: "الامتحانات" },
-    { title: "العلامات" },
-    { title: "تقييم الهيئة " },
-    { title: "الدراسات العليه" },
-    {
-      title: "خدمات اخرى",
-      submenu: true,
-      submenuItems: [
-        { title: "خارطة الجامعه", path: "/map" },
-        { title: "الية التدريب الميداني" },
-        { title: " تسجيل الحضور  ", path: "/scanQRCode" },
-        { title: " اخذ الحضور والغياب   ", path: "/generateQRCode" },
-      ],
-    },
-    { title: "تواصل معنا" },
-  ];
+  let menus = [];
+  if (rule === "doctor") {
+    menus = [
+      { title: "الخدمات الماليه" },
+      {
+        title: "خدمات التسجيل",
+        submenu: true,
+        submenuItems: [
+          { title: "انشاء ماده", path: "/createCourse" },
+          { title: "جدول المدرس", path: "/userCourse" },
+        ],
+      },
+      { title: "الامتحانات" },
+      { title: "العلامات" },
+      { title: "الدراسات العليه" },
+      {
+        title: "خدمات اخرى",
+        submenu: true,
+        submenuItems: [
+          { title: "خارطة الجامعه", path: "/map" },
+          { title: "الية التدريب الميداني" },
+          { title: " اخذ الحضور والغياب   ", path: "/generateQRCode" },
+        ],
+      },
+      { title: "تواصل معنا" },
+    ];
+  } else if (rule === "student") {
+    menus = [
+      { title: "الخدمات الماليه" },
+      {
+        title: "خدمات التسجيل",
+        submenu: true,
+        submenuItems: [
+          { title: "تسجيل ماده", path: "/courseRegister" },
+          { title: "جدول الطالب", path: "/userCourse" },
+        ],
+      },
+      { title: "الامتحانات" },
+      { title: "العلامات" },
+      { title: "تقييم الهيئة " },
+      { title: "الدراسات العليه" },
+      {
+        title: "خدمات اخرى",
+        submenu: true,
+        submenuItems: [
+          { title: "خارطة الجامعه", path: "/map" },
+          { title: "الية التدريب الميداني" },
+          { title: " تسجيل الحضور  ", path: "/scanQRCode" },
+        ],
+      },
+      { title: "تواصل معنا" },
+    ];
+  }
 
   const toggleSubMenu = (index) => {
     setSubMenu((prevState) => ({

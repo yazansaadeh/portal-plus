@@ -14,4 +14,8 @@ const isAuthenticated = createAsyncThunk("/api/isLogin", async () => {
   const res = await axios.get("/api/isLogin");
   return res.data;
 });
-export { login, getName, isAuthenticated };
+const getRule = createAsyncThunk("/api/get_rule", async () => {
+  const res = await axios.get("/api/get_rule");
+  return res.data;
+});
+export { login, getName, isAuthenticated, getRule };
