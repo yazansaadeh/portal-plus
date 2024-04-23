@@ -5,6 +5,6 @@ function LandingPage() {
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/login");
-  }, []);
+  }, [navigate]);
 }
 export default LandingPage;

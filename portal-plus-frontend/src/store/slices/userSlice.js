@@ -15,7 +15,6 @@ const userSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;
       state.isLogin = false;
-      console.log("action.payload1", action.payload);
       localStorage.setItem("isLogin", false);
       state.error = action.error.message;
     });
@@ -23,8 +22,8 @@ const userSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.isLogin = true;
-      console.log("action.payload2", action.payload);
-      localStorage.setItem("isLogin", true);
+      console.log("login" + action.payload);
+      localStorage.setItem("isLogin", action.payload);
       state.content = action.payload;
     });
     builder.addCase(login.pending, (state, action) => {
@@ -49,7 +48,7 @@ const userSlice = createSlice({
     builder.addCase(isAuthenticated.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      console.log("action.payload3", action.payload);
+      console.log("isAuthenticated" + action.payload);
       localStorage.setItem("isLogin", action.payload);
       state.isLogin = action.payload;
     });

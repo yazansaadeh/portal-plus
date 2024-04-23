@@ -11,6 +11,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import SideBar from './SideBar'
 
 function UserCourse() {
   const dispatch = useDispatch();
@@ -72,22 +73,29 @@ function UserCourse() {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>{showDeleteBtn ? "حذف المادة" : ""}</TableCell>
-            <TableCell>رقم المادة</TableCell>
-            <TableCell>اسم المادة</TableCell>
-            <TableCell>الوقت</TableCell>
-            <TableCell>المكان</TableCell>
-            <TableCell>إسم المدرس</TableCell>
-            <TableCell>عدد الغيابات</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{content}</TableBody>
-      </Table>
-    </TableContainer>
+    <div className='flex justify-between items-start text-center'>
+      <div>
+        <SideBar/>
+      </div>
+      <div className='flex items-center justify-center h-screen w-full'>
+        <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>{showDeleteBtn ? "حذف المادة" : ""}</TableCell>
+              <TableCell>رقم المادة</TableCell>
+              <TableCell>اسم المادة</TableCell>
+              <TableCell>الوقت</TableCell>
+              <TableCell>المكان</TableCell>
+              <TableCell>إسم المدرس</TableCell>
+              <TableCell>عدد الغيابات</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>{content}</TableBody>
+        </Table>
+      </TableContainer>
+      </div>
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import LoginForm from "./component/loginPage/LoginForm";
 import CreateCourse from "./component/createCoursePage/CreateCourse";
 import CourseRegister from "./component/courseRegisterPage/CourseRegister";
@@ -11,13 +10,12 @@ import Footer from "./component/Footer";
 import UserProfile from "./component/UserProfile";
 import GenerateQRCode from "./component/QRCode/GenerateQRCode";
 import ScanQRCode from "./component/QRCode/ScanQRCode";
-import PrivateRoutes from "./component/PrivateRoutes";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import Dashboard from "./component/Dashboard";
+import PrivateRoutes from "./component/PrivateRoutes";
 import { isAuthenticated } from "./store";
 
-const Dashboard = () => {
-  return <div>Dashboard</div>;
-};
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
