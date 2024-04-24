@@ -77,23 +77,23 @@ function UserCourse() {
       <div>
         <SideBar/>
       </div>
-      <div className='flex items-center justify-center h-screen w-full'>
-        <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>{showDeleteBtn ? "حذف المادة" : ""}</TableCell>
-              <TableCell>رقم المادة</TableCell>
-              <TableCell>اسم المادة</TableCell>
-              <TableCell>الوقت</TableCell>
-              <TableCell>المكان</TableCell>
-              <TableCell>إسم المدرس</TableCell>
-              <TableCell>عدد الغيابات</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>{content}</TableBody>
-        </Table>
-      </TableContainer>
+      <div className='flex items-center justify-center h-screen w-8/12 text-center'>
+        <TableContainer component={Paper} className="w-8/12 flex items-center justify-center mx-4">
+          <Table className="min-w-full">
+            <TableHead>
+              <TableRow>
+                <TableCell className="px-4 py-2">{showDeleteBtn ? "حذف المادة" : ""}</TableCell>
+                <TableCell className="px-4 py-2">رقم المادة</TableCell>
+                <TableCell className="px-4 py-2">اسم المادة</TableCell>
+                <TableCell className="px-4 py-2">الوقت</TableCell>
+                <TableCell className="px-4 py-2">المكان</TableCell>
+                <TableCell className="px-4 py-2">إسم المدرس</TableCell>
+                <TableCell className="px-4 py-2">عدد الغيابات</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{content}</TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );

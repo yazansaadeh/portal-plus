@@ -14,7 +14,7 @@ function Header() {
   }, [dispatch]);
   const navigate = useNavigate();
   return (
-    <div className="bg-[#334e7d] flex justify-between items-center h-12">
+    <div className="bg-[#334e7d] flex justify-between items-center h-12 mb-6">
       <p
         className="text-white mr-16 text-3xl hover:cursor-pointer hidden sm:flex"
         onClick={() => navigate("/dashboard")}
