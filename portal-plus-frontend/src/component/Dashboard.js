@@ -9,7 +9,7 @@ import { FaNoteSticky } from "react-icons/fa6";
 import { getRule } from "../store";
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { name, rule } = useSelector((state) => {
+  const { name, userId, rule } = useSelector((state) => {
     return state.auth;
   });
 
@@ -104,7 +104,7 @@ const Dashboard = () => {
                 {name}
               </h1>
               <h3 className={`text-white font-medium text-sm duration-300 p-1`}>
-                2035978
+                {userId}
               </h3>
             </div>
           </div>

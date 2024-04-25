@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, getName, isAuthenticated, getRule } from "../thunks/user";
+import {
+  login,
+  getName,
+  isAuthenticated,
+  getRule,
+  logout,
+} from "../thunks/user";
 
 const userSlice = createSlice({
   name: "user",
@@ -8,6 +14,7 @@ const userSlice = createSlice({
     isLoading: false,
     error: null,
     name: "",
+    userId: "",
     isLogin: Boolean(localStorage.getItem("isLogin")) || false,
     rule: "",
   },
@@ -23,7 +30,6 @@ const userSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.isLogin = true;
-      console.log("login" + action.payload);
       localStorage.setItem("isLogin", action.payload);
       state.content = action.payload;
     });
@@ -37,7 +43,8 @@ const userSlice = createSlice({
     builder.addCase(getName.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      state.name = action.payload;
+      state.name = action.payload.name;
+      state.userId = action.payload.id;
     });
     builder.addCase(getName.pending, (state, action) => {
       state.isLoading = true;
@@ -49,7 +56,6 @@ const userSlice = createSlice({
     builder.addCase(isAuthenticated.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      console.log("isAuthenticated" + action.payload);
       localStorage.setItem("isLogin", action.payload);
       state.isLogin = action.payload;
     });
@@ -66,6 +72,19 @@ const userSlice = createSlice({
       state.rule = action.payload;
     });
     builder.addCase(getRule.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(logout.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(logout.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      localStorage.setItem("isLogin", false);
+      state.content = null;
+    });
+    builder.addCase(logout.pending, (state, action) => {
       state.isLoading = true;
     });
   },
