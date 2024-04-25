@@ -117,7 +117,7 @@ function CreateCourse() {
       <div>
         <SideBar/>
       </div>
-      <div className='flex h-7/12 justify-center items-start w-full mt-8'>
+      <div className='flex h-9/12 justify-center items-start w-full mt-8'>
         {content}
         <form onSubmit={handleSubmit(onSubmit)}>
           {renderedCourseField}
