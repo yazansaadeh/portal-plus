@@ -84,9 +84,9 @@ function SideBar() {
     navigate(path);
   }
   return (
-    <div className="w-full flex items-center justify-between">
+    <div className="w-screen sm:w-72 flex items-center justify-between hidden sm:flex">
       {/* sidebar */}
-      <div className="flex h-screen  my-8 mb-12 ">
+      <div className="flex h-screen">
         <div
           className={`bg-[#334E7D] p-5 pt-8 w-48 flex transition-all duration-300 ease-in-out sm:w-72 rounded-md mr-4  flex-col`}
         >
@@ -102,8 +102,10 @@ function SideBar() {
               >
                 {name}
               </h1>
-              <h3 className={`text-white font-medium text-sm duration-300 p-1`}>
-                {userId}
+              <h3
+                className={`text-white font-medium text-sm duration-300 p-1 text-center`}
+              >
+                2035978
               </h3>
             </div>
           </div>
