@@ -48,10 +48,6 @@ function UserCourse() {
       const userCourseAttendance = userAttendance.filter((course) => {
         return course.courseId === row.course.courseId;
       });
-      // let numberOfAbsence = 0;
-      // if (userCourseAttendance.length > 7) {
-      //   numberOfAbsence = "محروم";
-      // }
       return (
         <TableRow key={row.course.id}>
           <TableCell>{showDeleteBtn}</TableCell>
