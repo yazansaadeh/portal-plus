@@ -1,6 +1,6 @@
 import { IoIosNotifications } from "react-icons/io";
 import { FaNoteSticky } from "react-icons/fa6";
-import SideBar from './SideBar'
+import SideBar from "./SideBar";
 const Dashboard = () => {
   return (
     <div className="h-screen flex items-center justify-center ">
@@ -19,7 +19,8 @@ const Dashboard = () => {
             </p>
           </div>
           <div className="text-md sm:text-xl px-4 font-medium">
-          للطلاب القدامى فقط ستبدأ غرامة التأخير من تاريخ 03-03-2023 للعام الدراسي 2022 الفصل الدراسي الثاني 
+            للطلاب القدامى فقط ستبدأ غرامة التأخير من تاريخ 03-03-2023 للعام
+            الدراسي 2022 الفصل الدراسي الثاني
           </div>
         </div>
         <div className="grid grid-cols-2 grid-rows-4 md:grid-cols-4 grid-rows-2 gap-2 hover:cursor-pointer w-11/12 mt-4">

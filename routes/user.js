@@ -20,7 +20,7 @@ router.post("/api/login", login, (req, res, next) => {});
 
 router.get("/api/get_name", isLogin, (req, res) => {
   if (req.user.name) {
-    res.send(req.user.name);
+    res.send({ name: req.user.name, id: req.user.username });
   } else {
     res.send("There is no name");
   }
@@ -36,6 +36,13 @@ router.get("/api/isLogin", (req, res) => {
 router.get("/api/get_rule", isLogin, (req, res) => {
   const rule = req.user.rule || "";
   res.send(rule);
+});
+
+router.get("/api/logout", (req, res) => {
+  // Passport.js provides a `logout()` function to clear the login session
+  req.logout(() => {
+    res.send("logged out successfuly");
+  });
 });
 
 module.exports = router;

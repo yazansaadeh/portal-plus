@@ -5,6 +5,10 @@ const login = createAsyncThunk("/login", async (values) => {
   const res = await axios.post("/api/login", values);
   return res.data;
 });
+const logout = createAsyncThunk("/logout", async (values) => {
+  const res = await axios.get("/api/logout");
+  return res.data;
+});
 
 const getName = createAsyncThunk("/api/get_name", async () => {
   const res = await axios.get("/api/get_name");
@@ -18,4 +22,4 @@ const getRule = createAsyncThunk("/api/get_rule", async () => {
   const res = await axios.get("/api/get_rule");
   return res.data;
 });
-export { login, getName, isAuthenticated, getRule };
+export { login, logout, getName, isAuthenticated, getRule };
