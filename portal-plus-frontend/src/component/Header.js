@@ -26,6 +26,18 @@ function Header() {
       <div className="flex justify-between items-center hover:cursor-pointer ml-4">
         <div className="bg-white rounded-full h-9 w-9 flex justify-center items-center">
           <img alt="userImg" src="/userPfp.jpg" className="rounded-full"></img>
+        <div className="flex">
+          <div className="bg-white rounded-full h-9 w-9 flex justify-center items-center">
+            <img
+              alt="userImg"
+              src="/userPfp.jpg"
+              className="rounded-full"
+            ></img>
+          </div>
+          <p className="text-white text-lg pr-4 font-medium hidden sm:flex">
+            {" "}
+            {name}
+          </p>
         </div>
         <p className="text-white text-lg px-4 font-medium hidden sm:flex">
           {" "}

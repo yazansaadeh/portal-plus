@@ -28,6 +28,16 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginForm />} />
+            <Route
+              path="/map"
+              element={
+                <div>
+                  <Header />
+                  <Map />
+                  <Footer />
+                </div>
+              }
+            />
             <Route path="" exact element={<PrivateRoutes />}>
               <Route
                 path="/dashboard"
@@ -65,16 +75,6 @@ function App() {
                   <div>
                     <Header />
                     <UserCourse />
-                    <Footer />
-                  </div>
-                }
-              />
-              <Route
-                path="/map"
-                element={
-                  <div>
-                    <Header />
-                    <Map />
                     <Footer />
                   </div>
                 }
