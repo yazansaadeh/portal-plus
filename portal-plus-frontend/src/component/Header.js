@@ -3,7 +3,7 @@ import { getName } from "../store";
 import { useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
-import SimpleMenu from "./Menu";
+// import SimpleMenu from "./Menu";
 
 function Header() {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ function Header() {
             {" "}
             {name}
           </p>
-          <SimpleMenu />
+          {/* <SimpleMenu /> */}
         </div>
       </div>
     </div>
