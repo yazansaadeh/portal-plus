@@ -21,6 +21,7 @@ function Header() {
       >
         HU's PORTAL
       </p>
+      {/* menu button */}
       <GiHamburgerMenu className="flex sm:hidden text-white text-3xl cursor-pointer justify-center items-center mr-6" />
       <div className="flex justify-between items-center hover:cursor-pointer ml-4">
         <div className="bg-white rounded-full h-9 w-9 flex justify-center items-center">

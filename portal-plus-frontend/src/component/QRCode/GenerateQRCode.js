@@ -45,7 +45,7 @@ function GenerateQRCode() {
   return (
     <div className="flex justify-between items-start text-center">
       <SideBar />
-      <div className="flex flex-col items-start justify-center  space-y-6 h-4/12 w-screen my-12">
+      <div className="flex flex-col items-center justify-center  space-y-6 h-4/12 w-screen my-12">
         <ConfirmGenerateDialog open={isDialogOpen} onConfirm={handleConfirm} />
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="block mb-6 text-center text-2xl space-y-3 text-[#354d7a]">
