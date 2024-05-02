@@ -23,7 +23,7 @@ function GenerateQRCode() {
           courseId: watch("courseId"),
         })
       );
-    }, 7000);
+    }, 5000);
 
     setTimeout(() => {
       clearInterval(intId);
