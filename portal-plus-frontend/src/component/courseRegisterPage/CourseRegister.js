@@ -42,20 +42,20 @@ function CourseRegister() {
       <div>
         <SideBar/>
       </div>
-      <div className='flex items-center w-full h-8/12 justify-center flex-col'>
+      <div className='flex items-center w-full h-8/12 justify-center flex-col gap-4 md:flex-row'>
         <div>
-          <Button variant="contained" onClick={handleOpenDialog}>
-            المواد المتاحة
-          </Button>
+        <button className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in" type="submit"  onClick={handleOpenDialog}>  
+          المواد المتاحة
+        </button>
           <CourseDialog
             setValue={setValue}
             open={isDialogOpen}
             onClose={handleCloseDialog}
           />
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex items-center justify-between flex-col gap-4 md:flex-row">
           <label>
-            ادخل رقم المادة
+          ادخل رقم المادة
             <Controller
               name="courseId"
               control={control}
@@ -73,7 +73,7 @@ function CourseRegister() {
             />
           </label>
           <div>
-            <button type="submit">تسجيل</button>
+            <button className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in" type="submit">تسجيل</button>
           </div>
         </form>
         {/* <UserCourse /> */}

@@ -84,7 +84,7 @@ function SideBar() {
     navigate(path);
   }
   return (
-    <div className="w-screen sm:w-72 flex items-center justify-between hidden sm:flex">
+    <div className="w-72 flex items-center justify-between hidden sm:flex">
       {/* sidebar */}
       <div className="flex h-screen">
         <div
