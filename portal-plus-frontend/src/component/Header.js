@@ -90,22 +90,27 @@ function Header() {
     dispatch(getName());
   }, [dispatch]);
   return (
-    <div>
-      <div>
-        <div className="bg-[#334e7d] flex justify-between items-center h-12 mb-6">
-        <p
-          className="text-white mr-16 text-3xl hover:cursor-pointer hidden sm:flex"
-          onClick={() => navigate("/dashboard")}
-        >
-          HU's PORTAL
-        </p>
-        {/* menu button */}
-        <GiHamburgerMenu className="flex sm:hidden text-white text-3xl cursor-pointer justify-center items-center mr-6" onClick={()=>setOpen(!open)}/>
-        <div className="flex justify-between items-center hover:cursor-pointer ml-4">
+    <div className="bg-[#334e7d] flex justify-between items-center h-12 mb-6">
+      <p
+        className="text-white mr-16 text-3xl hover:cursor-pointer hidden sm:flex"
+        onClick={() => navigate("/dashboard")}
+      >
+        HU's PORTAL
+      </p>
+      {/* menu button */}
+      <GiHamburgerMenu className="flex sm:hidden text-white text-3xl cursor-pointer justify-center items-center mr-6" />
+      <div className="flex justify-between items-center hover:cursor-pointer ml-4">
+        <div className="bg-white rounded-full h-9 w-9 flex justify-center items-center">
+          <img alt="userImg" src="/userPfp.jpg" className="rounded-full"></img>
+        <div className="flex">
           <div className="bg-white rounded-full h-9 w-9 flex justify-center items-center">
-            <img alt="userImg" src="/userPfp.jpg" className="rounded-full"></img>
+            <img
+              alt="userImg"
+              src="/userPfp.jpg"
+              className="rounded-full"
+            ></img>
           </div>
-          <p className="text-white text-lg px-4 font-medium hidden sm:flex">
+          <p className="text-white text-lg pr-4 font-medium hidden sm:flex">
             {" "}
             {name}
           </p>

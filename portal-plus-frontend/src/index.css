@@ -1,8 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
 * {
   direction: rtl;
   font-family: "Tajawal", sans-serif;
+}
+.leaflet-control-container .leaflet-routing-container-hide {
+  display: none;
 }
