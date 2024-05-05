@@ -4,7 +4,7 @@ import SideBar from "./SideBar";
 const Dashboard = () => {
   return (
     <div className="h-screen flex items-center justify-center ">
-      <SideBar />
+      <SideBar className='hidden sm:flex'/>
       {/* container */}
       <div className="flex justify-center flex-col w-screen mr-12 h-8/12 mt-24 md:mt-18">
         <h1 className="font-medium text-lg sm:text-3xl text-[#334e7d]">
