@@ -90,7 +90,6 @@ function Header() {
     dispatch(getName());
   }, [dispatch]);
   return (
-<<<<<<< HEAD
     <div>
       <div>
         <div className="bg-[#334e7d] flex justify-between items-center h-12 mb-6">
@@ -110,22 +109,7 @@ function Header() {
             {" "}
             {name}
           </p>
-=======
-    <div className="bg-[#334e7d] flex justify-between items-center h-12 mb-6">
-      <p
-        className="text-white mr-16 text-3xl hover:cursor-pointer hidden sm:flex"
-        onClick={() => navigate("/dashboard")}
-      >
-        HU's PORTAL
-      </p>
-      {/* menu button */}
-      <GiHamburgerMenu className="flex sm:hidden text-white text-3xl cursor-pointer justify-center items-center mr-6" />
-      <div className="flex justify-between items-center hover:cursor-pointer ml-4">
-        <div className="bg-white rounded-full h-9 w-9 flex justify-center items-center">
-          <img alt="userImg" src="/userPfp.jpg" className="rounded-full"></img>
->>>>>>> bdd14150c49bc965fb905f45f56d288772695047
-        </div>
-      </div>
+          </div>
     </div>
     <div>
       <div className={`w-screen flex items-center justify-center ${open ? 'w-80' : 'hidden '} mx-auto sm:hidden bg-white`}  style={{
@@ -194,6 +178,7 @@ function Header() {
             </ul>
           </div>
         </div>
+      </div>
       </div>
     </div>
     </div>
