@@ -39,7 +39,7 @@ function SideBar() {
         submenu: true,
         submenuItems: [
           { title: "خارطة الجامعه", path: "/map" },
-          { title: "الية التدريب الميداني" },
+          { title: "الية التدريب الميداني", path: "/showTrainingFile" },
           { title: " اخذ الحضور والغياب   ", path: "/generateQRCode" },
         ],
       },
@@ -65,7 +65,7 @@ function SideBar() {
         submenu: true,
         submenuItems: [
           { title: "خارطة الجامعه", path: "/map" },
-          { title: "الية التدريب الميداني" },
+          { title: "الية التدريب الميداني", path: "/training" },
           { title: " تسجيل الحضور  ", path: "/scanQRCode" },
         ],
       },

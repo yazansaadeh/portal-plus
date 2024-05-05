@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import Dashboard from "./component/Dashboard";
 import PrivateRoutes from "./component/PrivateRoutes";
 import { isAuthenticated } from "./store";
+import StudentPage from "./component/trainingPage/StudentPage";
+import DoctorPage from "./component/trainingPage/DoctorPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -105,6 +107,26 @@ function App() {
                   <div>
                     <Header />
                     <ScanQRCode />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/training"
+                element={
+                  <div>
+                    <Header />
+                    <StudentPage />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/showTrainingFile"
+                element={
+                  <div>
+                    <Header />
+                    <DoctorPage />
                     <Footer />
                   </div>
                 }
