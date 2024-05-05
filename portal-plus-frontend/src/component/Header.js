@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { BsArrowDown } from "react-icons/bs";
 import { getRule } from "../store/";
-
+import { Profile } from "./Profile";
 function Header() {
   const dispatch = useDispatch();
   const { name, userId, rule } = useSelector((state) => {
@@ -74,6 +74,7 @@ function Header() {
       { title: "تواصل معنا" },
     ];
   }
+  const [profileOpen, setProfileOpen] = useState(false);
 
   const toggleSubMenu = (index) => {
     setSubMenu((prevState) => ({
@@ -91,6 +92,9 @@ function Header() {
   }, [dispatch]);
   return (
     <div>
+      <div className={`${profileOpen ? 'flex' : 'hidden '} `}>
+        <Profile/ >
+      </div>
       <div>
         <div className="bg-[#334e7d] flex justify-between items-center h-12 mb-6">
         <p
@@ -101,7 +105,7 @@ function Header() {
         </p>
         {/* menu button */}
         <GiHamburgerMenu className="flex sm:hidden text-white text-3xl cursor-pointer justify-center items-center mr-6" onClick={()=>setOpen(!open)}/>
-        <div className="flex justify-between items-center hover:cursor-pointer ml-4">
+        <div className="flex justify-between items-center hover:cursor-pointer ml-4" onClick={()=>setProfileOpen(!profileOpen)}>
           <div className="bg-white rounded-full h-9 w-9 flex justify-center items-center">
             <img alt="userImg" src="/userPfp.jpg" className="rounded-full"></img>
           </div>
@@ -109,7 +113,8 @@ function Header() {
             {" "}
             {name}
           </p>
-          </div>
+
+        </div>
     </div>
     <div>
       <div className={`w-screen flex items-center justify-center ${open ? 'w-80' : 'hidden '} mx-auto sm:hidden bg-white`}  style={{
