@@ -61,8 +61,8 @@ const courseSlice = createSlice({
     builder.addCase(getUserCourse.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      state.userData.push(...action.payload.userCourse);
-      state.userAttendance.push(...action.payload.attendance);
+      state.userData = action.payload.userCourse;
+      state.userAttendance = action.payload.attendance;
     });
     builder.addCase(getUserCourse.rejected, (state, action) => {
       state.isLoading = false;

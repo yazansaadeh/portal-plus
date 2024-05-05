@@ -30,7 +30,7 @@ const userSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.isLogin = true;
-      localStorage.setItem("isLogin", action.payload);
+      localStorage.setItem("isLogin", true);
       state.content = action.payload;
     });
     builder.addCase(login.pending, (state, action) => {
@@ -51,12 +51,13 @@ const userSlice = createSlice({
     });
     builder.addCase(isAuthenticated.rejected, (state, action) => {
       state.isLoading = false;
+      localStorage.setItem("isLogin", false);
       state.error = action.error.message;
     });
     builder.addCase(isAuthenticated.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      localStorage.setItem("isLogin", action.payload);
+      // localStorage.setItem("isLogin", true);
       state.isLogin = action.payload;
     });
     builder.addCase(isAuthenticated.pending, (state, action) => {
@@ -76,6 +77,7 @@ const userSlice = createSlice({
     });
     builder.addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
+      localStorage.setItem("isLogin", false);
       state.error = action.error.message;
     });
     builder.addCase(logout.fulfilled, (state, action) => {
