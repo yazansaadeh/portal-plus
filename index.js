@@ -9,6 +9,7 @@ const User = require("./models/user");
 const userRouter = require("./routes/user");
 const courseRouter = require("./routes/course");
 const attendanceRouter = require("./routes/attendance");
+const trainingRouter = require("./routes/training");
 
 const app = express();
 
@@ -23,7 +24,7 @@ mongoose
   });
 
 const sessionConfig = {
-  secret: 'dkuafgsdfkugchvjsCSDCSDFAVFDhvkghghgfhfghfhIHCKN',
+  secret: "dkuafgsdfkugchvjsCSDCSDFAVFDhvkghghgfhfghfhIHCKN",
   resave: "false",
   saveUninitialized: "true",
   cookie: {
@@ -44,4 +45,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use(userRouter);
 app.use(courseRouter);
 app.use(attendanceRouter);
+app.use(trainingRouter);
+
 app.listen(5000);
