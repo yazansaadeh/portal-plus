@@ -117,14 +117,10 @@ function Header() {
         </div>
     </div>
     <div>
-      <div className={`w-screen flex items-center justify-center ${open ? 'w-80' : 'hidden '} mx-auto sm:hidden bg-white`}  style={{
-      position: 'absolute',
-      left: '50%',
-      top: '60%',
-      transform: 'translate(-50%,-50%)'
+      <div className={`w-full px-4 flex items-center justify-center ${open ? 'w-80' : 'hidden '} mx-auto sm:hidden bg-white `}  style={{
 }}>
         {/* sidebar */}
-        <div className="flex h-screen w-screen">
+        <div className="flex h-screen w-screen ">
           <div
             className={`bg-[#334E7D] pt-8 w-screen flex transition-all duration-300 ease-in-out rounded-md flex-col`}
           >
