@@ -33,37 +33,39 @@ function StudentPage() {
   };
 
   return (
-    <div className="flex justify-between items-start text-center">
+    <div className="flex justify-center sm:justify-between items-start text-center">
       <SideBar />
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label className="cursor-pointer" htmlFor="trainingFile">
-            إختر ملف:
-          </label>
-          <input
-            id="trainingFile"
-            type="file"
-            hidden
-            onChange={handleFileChange}
-          />
-        </div>
-        {selectedFile ? <p>{selectedFile.name}</p> : ""}
-        <div>
-          <button type="submit">إرسال الملف</button>
-        </div>
-      </form>
-      {showFile ? (
-        <div className="max-w-xs rounded overflow-hidden shadow-lg m-4 cursor-pointer flex">
-          <Button color="error" onClick={handleDeleteFile}>
-            <MdDelete className="text-2xl" />
-          </Button>
-          <div onClick={handleOpenFile} className=" pl-6 py-4">
-            <div className="font-bold text-xl mb-2">{selectedFile.name}</div>
+      <div className="flex items-center justify-center h-screen flex-col w-full" >
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label className="cursor-pointer" htmlFor="trainingFile">
+              إختر ملف:
+            </label>
+            <input
+              id="trainingFile"
+              type="file"
+              hidden
+              onChange={handleFileChange}
+            />
           </div>
-        </div>
-      ) : (
-        ""
-      )}
+          {selectedFile ? <p>{selectedFile.name}</p> : ""}
+          <div>
+            <button className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4" type="submit">إرسال الملف</button>
+          </div>
+        </form>
+        {showFile ? (
+          <div className="max-w-xs rounded overflow-hidden shadow-lg m-4 cursor-pointer flex">
+            <Button color="error" onClick={handleDeleteFile}>
+              <MdDelete className="text-2xl" />
+            </Button>
+            <div onClick={handleOpenFile} className=" pl-6 py-4">
+              <div className="font-bold text-xl mb-2">{selectedFile.name}</div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }
