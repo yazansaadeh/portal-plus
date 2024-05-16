@@ -3,6 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 const router = express.Router();
+const Training = require("../models/trainingFile");
+const isLogin = require("../middlewares/isLogin");
 
 // Configure Multer
 const storage = multer.memoryStorage(); // Store file data in memory
@@ -15,6 +17,7 @@ if (!fs.existsSync(uploadDirectory)) {
 // Define route for handling file upload
 router.post(
   "/api/storeTrainingFile",
+  isLogin,
   upload.single("trainingFile"),
   async (req, res) => {
     // 'trainingFile' should match the name attribute of your file input in the client
@@ -22,9 +25,16 @@ router.post(
     if (!file) {
       return res.status(400).send("No file uploaded");
     }
+    const isThereFile = await Training.findOne({
+      studentId: req.user.username,
+    });
+    if (isThereFile) {
+      return res.status(500).send("لا يمكنك ارسال اكثر من ملف واحد");
+    }
+    const extensionFile = file.originalname.split(".")[1];
     try {
       // Create a write stream to save the file
-      const filePath = `${uploadDirectory}/${file.originalname}`;
+      const filePath = `${uploadDirectory}/${req.user.username}.${extensionFile}`;
       const writeStream = fs.createWriteStream(filePath);
 
       // Write the file data to the write stream
@@ -32,9 +42,15 @@ router.post(
 
       // Close the write stream
       writeStream.end();
+      const trainingFile = new Training({
+        fileName: `${req.user.username}.${extensionFile}`,
+        studentMajor: req.user.major,
+        studentId: req.user.username,
+      });
+      trainingFile.save();
 
-      console.log("File saved successfully:", filePath);
-      res.send("File uploaded and saved successfully");
+      console.log("File saved successfully:");
+      res.send("File saved successfully");
     } catch (error) {
       console.error("Error saving file:", error);
       res.status(500).send("Error saving file");
@@ -56,37 +72,54 @@ router.get("/api/getFile/:filename", (req, res) => {
   }
 });
 
-router.post(
-  "/api/deleteTrainingFile",
-  upload.single("trainingFile"),
-  async (req, res) => {
-    const file = req.file; // Uploaded file object
-    if (!file) {
-      return res.status(400).send("No file uploaded");
-    }
-    const filePath = path.join(
-      __dirname,
-      "..",
-      uploadDirectory,
-      file.originalname
-    ); // Resolve absolute file path
+router.post("/api/deleteTrainingFile", isLogin, async (req, res) => {
+  const { studentId, fileName } = req.body;
+  if (!fileName) {
+    return res.status(400).send("No file uploaded");
+  }
+  const filePath = path.join(__dirname, "..", uploadDirectory, fileName); // Resolve absolute file path
 
-    try {
-      // Check if the file exists
-      if (fs.existsSync(filePath)) {
-        // If the file exists, delete it
-        fs.unlinkSync(filePath);
+  try {
+    // Check if the file exists
+    if (fs.existsSync(filePath)) {
+      // If the file exists, delete it
+      fs.unlinkSync(filePath);
+      const deletedFile = await Training.findOneAndDelete({ studentId });
+      if (deletedFile) {
+        console.log(`File ${fileName} deleted for student ${studentId}`);
         res.status(200).send("File deleted successfully");
       } else {
-        // If the file does not exist, send a 404 Not Found response
-        res.status(404).send("File not found");
+        res.status(404).send("No matching record found in the database");
       }
-    } catch (error) {
-      // If an error occurs during file deletion, send a 500 Internal Server Error response
-      console.error("Error deleting file:", error);
-      res.status(500).send("Error deleting file");
+    } else {
+      // If the file does not exist, send a 404 Not Found response
+      res.status(404).send("File not found");
     }
+  } catch (error) {
+    // If an error occurs during file deletion, send a 500 Internal Server Error response
+    console.error("Error deleting file:", error);
+    res.status(500).send("Error deleting file");
   }
-);
+});
+
+router.get("/api/getTrainingFile", isLogin, async (req, res) => {
+  const files = await Training.find({ studentMajor: req.user.major });
+  res.send(files);
+});
+router.get("/api/getTrainingFileForOneStudent", isLogin, async (req, res) => {
+  const file = await Training.findOne({ studentId: req.user.username });
+  console.log(file);
+  res.send(file);
+});
+
+router.post("/api/checkTrainingFile", async (req, res) => {
+  const { checkType } = req.body;
+  const updateTrainingStatus = await Training.findOneAndUpdate(
+    { studentId: req.user.username, fileStatus: null },
+    { fileStatus: checkType },
+    { new: true }
+  );
+  res.send(updateTrainingStatus);
+});
 
 module.exports = router;

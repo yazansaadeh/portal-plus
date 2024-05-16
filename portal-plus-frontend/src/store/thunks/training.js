@@ -16,13 +16,36 @@ const storeTrainingFile = createAsyncThunk(
 const deleteTrainingFile = createAsyncThunk(
   "/api/deleteTrainingFile",
   async (values) => {
-    const res = await axios.post("/api/deleteTrainingFile", values, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const res = await axios.post("/api/deleteTrainingFile", values);
     return res.data;
   }
 );
 
-export { storeTrainingFile, deleteTrainingFile };
+const getTrainingFile = createAsyncThunk("/api/getTrainingFile", async () => {
+  const res = await axios.get("/api/getTrainingFile");
+  return res.data;
+});
+
+const getTrainingFileForOneStudent = createAsyncThunk(
+  "/api/getTrainingFileForOneStudent",
+  async () => {
+    const res = await axios.get("/api/getTrainingFileForOneStudent");
+    return res.data;
+  }
+);
+
+const checkTrainingFile = createAsyncThunk(
+  "/api/checkTrainingFile",
+  async (values) => {
+    const res = await axios.post("/api/checkTrainingFile", values);
+    return res.data;
+  }
+);
+
+export {
+  storeTrainingFile,
+  deleteTrainingFile,
+  getTrainingFile,
+  getTrainingFileForOneStudent,
+  checkTrainingFile,
+};
