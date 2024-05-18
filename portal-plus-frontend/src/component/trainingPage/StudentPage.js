@@ -8,9 +8,11 @@ import {
 } from "../../store";
 import { Button } from "@mui/material";
 import { MdDelete } from "react-icons/md";
+import { TiDelete } from "react-icons/ti";
 
 function StudentPage() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [declineText, setDeclineText] = useState("");
   const dispatch = useDispatch();
   const { userFile, data, error } = useSelector((state) => state.training);
 
@@ -49,7 +51,52 @@ function StudentPage() {
       })
     );
     setSelectedFile(null);
+    setDeclineText("");
   };
+  const handleShowDeclineText = (text) => {
+    setDeclineText(text);
+  };
+
+  let content;
+  if (userFile && userFile.fileStatus === "null") {
+    content = (
+      <div className="max-w-xs rounded overflow-hidden shadow-lg m-4 cursor-pointer flex">
+        <Button color="error" onClick={handleDeleteFile}>
+          <MdDelete className="text-2xl" />
+        </Button>
+        <div onClick={handleOpenFile} className="pl-6 py-4">
+          <div className="font-bold text-xl mb-2">{userFile.fileName}</div>
+        </div>
+      </div>
+    );
+  } else if (userFile && userFile.fileStatus === "true") {
+    content = (
+      <div className="relative max-w-xs rounded overflow-hidden shadow-lg m-4">
+        <div className=" pl-6 py-4">
+          <div className="font-bold text-xl mb-2">
+            لقد تمت الموافقة على ملف التدريب
+          </div>
+        </div>
+      </div>
+    );
+  } else if (userFile && userFile.fileStatus === "false") {
+    content = (
+      <div className="relative max-w-xs rounded overflow-hidden shadow-lg m-4">
+        <button
+          onClick={handleDeleteFile}
+          className="absolute top-0 right-0 p-2 text-black rounded-full"
+        >
+          <TiDelete className="text-2xl" />
+        </button>
+        <div className=" pl-6 py-4">
+          <div className="font-bold text-xl mb-2">لقد تم رفض ملف التدريب</div>
+        </div>
+        <button onClick={() => handleShowDeclineText(userFile.declineText)}>
+          السبب
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center sm:justify-between items-start text-center">
@@ -83,18 +130,8 @@ function StudentPage() {
           )}
         </form>
       </div>
-      {userFile ? (
-        <div className="max-w-xs rounded overflow-hidden shadow-lg m-4 cursor-pointer flex">
-          <Button color="error" onClick={handleDeleteFile}>
-            <MdDelete className="text-2xl" />
-          </Button>
-          <div onClick={handleOpenFile} className="pl-6 py-4">
-            <div className="font-bold text-xl mb-2">{userFile.fileName}</div>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
+      {content}
+      {declineText}
     </div>
   );
 }

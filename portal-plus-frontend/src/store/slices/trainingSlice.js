@@ -5,6 +5,7 @@ import {
   getTrainingFileForOneStudent,
   deleteTrainingFile,
   checkTrainingFile,
+  removeFileInDoctorPage,
 } from "../thunks/training";
 
 const trainingSlice = createSlice({
@@ -16,6 +17,7 @@ const trainingSlice = createSlice({
     trainingFile: [],
     userFile: null,
     checkStatus: null,
+    showFileInDoctorPage: true,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -76,6 +78,20 @@ const trainingSlice = createSlice({
       state.checkStatus = action.payload;
     });
     builder.addCase(checkTrainingFile.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(removeFileInDoctorPage.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(removeFileInDoctorPage.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.trainingFile = state.trainingFile.filter(
+        (item) => item._id !== action.payload
+      );
+    });
+    builder.addCase(removeFileInDoctorPage.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });

@@ -16,7 +16,19 @@ const trainingFileSchema = new Schema({
   },
   fileStatus: {
     type: String,
-    default: null,
+    default: "null",
+  },
+  showInDoctorPage: {
+    type: Boolean,
+    default: true,
+  },
+  showInStudentPage: {
+    type: Boolean,
+    default: true,
+  },
+  declineText: {
+    type: String,
+    default: "",
   },
 });
 

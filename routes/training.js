@@ -49,7 +49,6 @@ router.post(
       });
       trainingFile.save();
 
-      console.log("File saved successfully:");
       res.send("File saved successfully");
     } catch (error) {
       console.error("Error saving file:", error);
@@ -86,7 +85,6 @@ router.post("/api/deleteTrainingFile", isLogin, async (req, res) => {
       fs.unlinkSync(filePath);
       const deletedFile = await Training.findOneAndDelete({ studentId });
       if (deletedFile) {
-        console.log(`File ${fileName} deleted for student ${studentId}`);
         res.status(200).send("File deleted successfully");
       } else {
         res.status(404).send("No matching record found in the database");
@@ -108,18 +106,27 @@ router.get("/api/getTrainingFile", isLogin, async (req, res) => {
 });
 router.get("/api/getTrainingFileForOneStudent", isLogin, async (req, res) => {
   const file = await Training.findOne({ studentId: req.user.username });
-  console.log(file);
   res.send(file);
 });
 
 router.post("/api/checkTrainingFile", async (req, res) => {
-  const { checkType } = req.body;
+  const { checkType, fileName, declineText } = req.body;
   const updateTrainingStatus = await Training.findOneAndUpdate(
-    { studentId: req.user.username, fileStatus: null },
-    { fileStatus: checkType },
+    { fileName: fileName, fileStatus: "null" },
+    { fileStatus: checkType, declineText },
     { new: true }
   );
-  res.send(updateTrainingStatus);
+  res.send(updateTrainingStatus.fileStatus);
+});
+
+router.post("/api/removeFileInDoctorPage", async (req, res) => {
+  const { fileName } = req.body;
+  const updatedFile = await Training.findOneAndUpdate(
+    { fileName },
+    { showInDoctorPage: false },
+    { new: true }
+  );
+  res.send(updatedFile._id);
 });
 
 module.exports = router;

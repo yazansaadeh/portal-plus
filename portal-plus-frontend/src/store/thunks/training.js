@@ -42,10 +42,19 @@ const checkTrainingFile = createAsyncThunk(
   }
 );
 
+const removeFileInDoctorPage = createAsyncThunk(
+  "/api/removeFileInDoctorPage",
+  async (values) => {
+    const res = await axios.post("/api/removeFileInDoctorPage", values);
+    return res.data;
+  }
+);
+
 export {
   storeTrainingFile,
   deleteTrainingFile,
   getTrainingFile,
   getTrainingFileForOneStudent,
   checkTrainingFile,
+  removeFileInDoctorPage,
 };
