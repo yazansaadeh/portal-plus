@@ -39,6 +39,19 @@ const storeOfficeHour = createAsyncThunk(
   }
 );
 
+const getDoctorName = createAsyncThunk("/api/getDoctorName", async () => {
+  const res = await axios.get("/api/getDoctorName");
+  return res.data;
+});
+
+const getDoctorOfficeTime = createAsyncThunk(
+  "/api/getDoctorOfficeTime",
+  async () => {
+    const res = await axios.get("/api/getDoctorOfficeTime");
+    return res.data;
+  }
+);
+
 export {
   login,
   logout,
@@ -47,4 +60,6 @@ export {
   getRule,
   storeOfficeDay,
   storeOfficeHour,
+  getDoctorName,
+  getDoctorOfficeTime,
 };

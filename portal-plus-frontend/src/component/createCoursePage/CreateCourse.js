@@ -5,7 +5,8 @@ import CourseField from "./CourseField";
 import { useDispatch, useSelector } from "react-redux";
 import { createCourse } from "../../store";
 import { useEffect, useState } from "react";
-import SideBar from '../SideBar'
+import SideBar from "../SideBar";
+import { getDoctorName } from "../../store";
 
 function CreateCourse() {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(true);
@@ -17,6 +18,7 @@ function CreateCourse() {
     return state.course;
   });
   const dispatch = useDispatch();
+
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       courseId: "",
@@ -36,11 +38,6 @@ function CreateCourse() {
     },
     { name: "time", label: "وقت الماده", message: "يجب ادخال وقت الماده" },
     {
-      name: "doctorName",
-      label: "اسم المدرس",
-      message: "يجب ادخال اسم المدرس",
-    },
-    {
       name: "location",
       label: "موقع المحاضرة",
       message: "يجب ادخال موقع المحاضرة",
@@ -49,6 +46,11 @@ function CreateCourse() {
       name: "major",
       label: "اسم التخصص",
       message: "يجب ادخال اسم التخصص",
+    },
+    {
+      name: "doctorName",
+      label: "اسم المدرس",
+      message: "يجب ادخال اسم المدرس",
     },
   ];
   const onSubmit = (data) => {
@@ -104,6 +106,7 @@ function CreateCourse() {
               field={field}
               fieldState={fieldState}
               placeholder={field.label}
+              name={field.name}
               error={error}
             />
           )}
@@ -115,9 +118,9 @@ function CreateCourse() {
   return (
     <div className="flex justify-between items-start text-center">
       <div>
-        <SideBar/>
+        <SideBar />
       </div>
-      <div className='flex h-9/12 justify-center items-start w-full mt-8'>
+      <div className="flex h-9/12 justify-center items-start w-full mt-8">
         {content}
         <form onSubmit={handleSubmit(onSubmit)}>
           {renderedCourseField}
@@ -126,7 +129,12 @@ function CreateCourse() {
           </p>
 
           <div className="flex justify-center items-center">
-            <button type="submit" className="bg-[#354d7a] text-white rounded-xl px-12 py-3 flex">تسجيل المادة </button>
+            <button
+              type="submit"
+              className="bg-[#354d7a] text-white rounded-xl px-12 py-3 flex"
+            >
+              تسجيل المادة{" "}
+            </button>
           </div>
         </form>
       </div>

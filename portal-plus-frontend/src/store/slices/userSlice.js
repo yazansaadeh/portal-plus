@@ -7,6 +7,8 @@ import {
   logout,
   storeOfficeDay,
   storeOfficeHour,
+  getDoctorName,
+  getDoctorOfficeTime,
 } from "../thunks/user";
 
 const userSlice = createSlice({
@@ -21,6 +23,8 @@ const userSlice = createSlice({
     rule: "",
     officeDay: "",
     officeHour: "",
+    doctorsName: [],
+    officeTime: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -49,6 +53,8 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.name = action.payload.name;
       state.userId = action.payload.id;
+      state.officeDay = action.payload.officeDay;
+      state.officeHour = action.payload.officeHour;
     });
     builder.addCase(getName.pending, (state, action) => {
       state.isLoading = true;
@@ -115,6 +121,30 @@ const userSlice = createSlice({
       state.officeHour = action.payload;
     });
     builder.addCase(storeOfficeHour.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getDoctorName.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(getDoctorName.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.doctorsName = action.payload;
+    });
+    builder.addCase(getDoctorName.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getDoctorOfficeTime.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(getDoctorOfficeTime.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.officeTime = action.payload;
+    });
+    builder.addCase(getDoctorOfficeTime.pending, (state, action) => {
       state.isLoading = true;
     });
   },
