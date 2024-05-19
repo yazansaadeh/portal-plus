@@ -44,11 +44,12 @@ function DoctorPage() {
         return (
           <div
             key={file.studentId}
-            className="max-w-xs rounded overflow-hidden shadow-lg m-4 cursor-pointer flex"
+            className="max-w-xs rounded overflow-hidden shadow-lg m-4 cursor-pointer flex "
           >
             <Button
               onClick={() => handleDeclineClick(file.fileName)}
               color="error"
+              
             >
               <TiDelete className="text-2xl" />
             </Button>
@@ -103,7 +104,7 @@ function DoctorPage() {
             >
               <TiDelete className="text-2xl" />
             </button>
-            <div className=" pl-6 py-4">
+            <div className="pl-6 py-4">
               <div className="font-bold text-xl mb-2">
                 لقد تم رفض ملف التدريب
               </div>
@@ -116,10 +117,12 @@ function DoctorPage() {
     content = <div>لا يوجد حاليا اي ملفات تدريب</div>;
   }
   return (
-    <div className="flex justify-between items-start text-center">
+    <div className="flex justify-between items-start text-center ">
       <SideBar />
 
-      {content}
+      <div style={{position:'absolute',top:'50%',left:'40%',transform:'translate(-50%,-50%)'}}>
+        {content}
+      </div>
     </div>
   );
 }

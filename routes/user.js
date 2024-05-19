@@ -9,13 +9,12 @@ router.get("/create_user", async (req, res) => {
   const user = new User({
     rule: "doctor",
     major: "software",
-    username: "15",
-    name: "محمد عبدالله سعاده",
+    username: "50",
+    name: " كريستيانو رونالدو ",
   });
   const newUser = await User.register(user, "44");
   res.send(newUser);
 });
-
 router.post("/api/login", login, (req, res, next) => {});
 
 router.get("/api/get_name", isLogin, (req, res) => {
