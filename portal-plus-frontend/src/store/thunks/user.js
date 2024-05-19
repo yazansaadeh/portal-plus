@@ -22,4 +22,29 @@ const getRule = createAsyncThunk("/api/get_rule", async () => {
   const res = await axios.get("/api/get_rule");
   return res.data;
 });
-export { login, logout, getName, isAuthenticated, getRule };
+
+const storeOfficeDay = createAsyncThunk(
+  "/api/storeOfficeDay",
+  async (values) => {
+    const res = await axios.post("/api/storeOfficeDay", values);
+    return res.data;
+  }
+);
+
+const storeOfficeHour = createAsyncThunk(
+  "/api/storeOfficeHour",
+  async (values) => {
+    const res = await axios.post("/api/storeOfficeHour", values);
+    return res.data;
+  }
+);
+
+export {
+  login,
+  logout,
+  getName,
+  isAuthenticated,
+  getRule,
+  storeOfficeDay,
+  storeOfficeHour,
+};

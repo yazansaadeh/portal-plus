@@ -5,6 +5,8 @@ import {
   isAuthenticated,
   getRule,
   logout,
+  storeOfficeDay,
+  storeOfficeHour,
 } from "../thunks/user";
 
 const userSlice = createSlice({
@@ -17,6 +19,8 @@ const userSlice = createSlice({
     userId: "",
     isLogin: Boolean(localStorage.getItem("isLogin")) || false,
     rule: "",
+    officeDay: "",
+    officeHour: "",
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -87,6 +91,30 @@ const userSlice = createSlice({
       state.content = null;
     });
     builder.addCase(logout.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(storeOfficeDay.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(storeOfficeDay.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.officeDay = action.payload;
+    });
+    builder.addCase(storeOfficeDay.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(storeOfficeHour.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(storeOfficeHour.fulfilled, (state, action) => {
+      state.error = null;
+      state.isLoading = false;
+      state.officeHour = action.payload;
+    });
+    builder.addCase(storeOfficeHour.pending, (state, action) => {
       state.isLoading = true;
     });
   },

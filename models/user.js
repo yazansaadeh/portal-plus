@@ -15,6 +15,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  officeHour: {
+    type: String,
+    default: "",
+  },
+  officeDay: {
+    type: String,
+    default: "",
+  },
 });
 
 userSchema.plugin(passportLocalMongoose);

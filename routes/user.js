@@ -7,10 +7,10 @@ const router = express.Router();
 
 router.get("/create_user", async (req, res) => {
   const user = new User({
-    rule: "student",
+    rule: "doctor",
     major: "software",
-    username: "14",
-    name: "محمود عبدالله سعاده",
+    username: "15",
+    name: "محمد عبدالله سعاده",
   });
   const newUser = await User.register(user, "44");
   res.send(newUser);
@@ -43,6 +43,20 @@ router.get("/api/logout", (req, res) => {
   req.logout(() => {
     res.send("logged out successfuly");
   });
+});
+
+router.post("/api/storeOfficeHour", async (req, res) => {
+  const { officeHour } = req.body;
+  req.user.officeHour = officeHour;
+  await req.user.save();
+  res.send(req.user.officeHour);
+});
+
+router.post("/api/storeOfficeDay", async (req, res) => {
+  const { officeDay } = req.body;
+  req.user.officeDay = officeDay;
+  await req.user.save();
+  res.send(req.user.officeDay);
 });
 
 module.exports = router;
