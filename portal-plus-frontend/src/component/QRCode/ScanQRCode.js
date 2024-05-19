@@ -26,10 +26,10 @@ function ScanQRCode() {
   return (
     <div className="flex justify-between items-start text-center">
       <SideBar />
-      <div className="w-screen h-screen flex items-center justify-center">
-        <Button onClick={handleClick} color="success">
+      <div className="w-screen h-screen flex items-center flex-col justify-center">
+        <button onClick={handleClick} className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4">
           افتح الكاميرا
-        </Button>
+        </button>
         {showCamera ? (
           <QrScanner
             onResult={(result) => handleScannedResult(result)}

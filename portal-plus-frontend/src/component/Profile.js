@@ -43,12 +43,18 @@ export const Profile = () => {
         <div className="flex flex-row items-center justify-between m-2 w-full flex-col gap-2">
           <div className="w-full bg-white flex items-center justify-between rounded-md">
               <BiSolidEdit className="bg-white text-[#354d7a] text-2xl m-2 cursor-pointer"/>
-              <input placeholder="enter your email" className="text-left px-2 rounded-md text-sm ml-2 border-none outline-none"></input>
+              <input placeholder="ادخل بريدك الالكتروني" className="text-left px-2 rounded-md text-sm ml-2 border-none outline-none"></input>
           </div>
           <div className="w-full bg-white flex items-center justify-between rounded-md">
               <BiSolidEdit className="bg-white text-[#354d7a] text-2xl m-2 cursor-pointer"/>
-              <input placeholder="enter your office hours" className="text-left px-2 rounded-md text-sm ml-2 border-none outline-none"></input>
+              <input placeholder="ادخل ساعاتك المكتبيه" className="text-left px-2 rounded-md text-sm ml-2 border-none outline-none"></input>
           </div>
+        </div>
+        <div className="flex flex-row items-center justify-between m-2 w-full gap-2 text-[#354d7a] flex-col bg-white px-2 rounded-md text-center ">
+            <div className="m-1">
+              <p>البريد الالكتروني للمدرس :  </p>
+              <p>salimobada184@gmail.com</p>
+            </div>
         </div>
         <div className="flex flex-row items-center justify-between">
           <button
