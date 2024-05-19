@@ -315,7 +315,6 @@ function Map() {
         </div>
       </div>
     </div>
-    <SideBar />
       </div>
       <div className="w-full mr-0 md:mr-4 h-screen" style={{zIndex:1}}>
         <div className="flex items-center justify-around flex-col py-6">
@@ -326,6 +325,7 @@ function Map() {
               onChange={handleFromChange}
               id="buildings"
               name="buildings"
+              className="bg-[#334E7D] text-white px-2 rounded-md"
             >
               <option
                 value={`${location.coordinates.lat},${location.coordinates.lng}`}
@@ -348,6 +348,7 @@ function Map() {
               onChange={handleToChange}
               id="buildings"
               name="buildings"
+              className="bg-[#334E7D] text-white px-2 rounded-md"
             >
               <option
                 value={`${location.coordinates.lat},${location.coordinates.lng}`}
