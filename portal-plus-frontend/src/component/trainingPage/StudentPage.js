@@ -103,9 +103,10 @@ function StudentPage() {
   }
 
   return (
-    <div className="flex justify-center sm:justify-between items-start text-center">
-      <SideBar />
-      <div className="flex items-center justify-center flex-col w-11/12">
+    <div className="h-screen flex items-center justify-center ">
+      <SideBar className='hidden sm:flex'/>
+      {/* container */}
+      <div className="flex justify-center flex-col w-screen mr-12 h-8/12 mt-72 md:mt-18">
         <h1 className="font-medium text-lg sm:text-3xl text-[#334e7d]">
           بوابة الطالب الألكترونية
         </h1>
