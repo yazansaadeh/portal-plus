@@ -1,6 +1,11 @@
 import { IoIosNotifications } from "react-icons/io";
 import { FaNoteSticky } from "react-icons/fa6";
 import SideBar from "./SideBar";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { IoMdPhonePortrait } from "react-icons/io";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { BsFileEarmarkSpreadsheet } from "react-icons/bs";
 const Dashboard = () => {
   return (
     <div className="h-screen flex items-center justify-center ">
@@ -29,32 +34,32 @@ const Dashboard = () => {
             <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
           </div>
           <div className="bg-[#334e7d] flex items-center justify-around hover:bg-[#7083A4] duration-300 px-4 text-center h-24 my-2 rounded-md flex-col md:flex-row">
-            <p className="text-md sm:text-xl text-white">استبانات</p>
-            <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
+            <p className="text-md sm:text-xl text-white"> التسجيل عبر الهاتف</p>
+            <IoMdPhonePortrait className="hidden lg:flex text-3xl text-white" />
           </div>
           <div className="bg-[#334e7d] flex items-center justify-around hover:bg-[#7083A4] duration-300 px-4 text-center h-24 my-2 rounded-md flex-col md:flex-row">
-            <p className="text-md sm:text-xl text-white">استبانات</p>
-            <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
+            <p className="text-md sm:text-xl text-white">تحديد رسوم الساعات</p>
+            <FaRegMoneyBill1 className="hidden lg:flex text-3xl text-white" />
           </div>
           <div className="bg-[#334e7d] flex items-center justify-around hover:bg-[#7083A4] duration-300 px-4 text-center h-24 my-2 rounded-md flex-col md:flex-row">
-            <p className="text-md sm:text-xl text-white">استبانات</p>
-            <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
+            <p className="text-md sm:text-xl text-white">تفعيل خدمة الرسائل </p>
+            <IoMdPhonePortrait className="hidden lg:flex text-3xl text-white" />
           </div>
           <div className="bg-[#334e7d] flex items-center justify-around hover:bg-[#7083A4] duration-300 px-4 text-center h-24 my-2 rounded-md flex-col md:flex-row">
-            <p className="text-md sm:text-xl text-white">استبانات</p>
-            <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
+            <p className="text-md sm:text-xl text-white">تنزيل برنامج التسجيل  </p>
+            <IoMdPhonePortrait className="hidden lg:flex text-3xl text-white" />
           </div>
           <div className="bg-[#334e7d] flex items-center justify-around hover:bg-[#7083A4] duration-300 px-4 text-center h-24 my-2 rounded-md flex-col md:flex-row">
-            <p className="text-md sm:text-xl text-white">استبانات</p>
-            <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
+            <p className="text-md sm:text-xl text-white">علامات الطالب</p>
+            <IoCheckmarkDoneSharp  className="hidden lg:flex text-3xl text-white" />
           </div>
           <div className="bg-[#334e7d] flex items-center justify-around  hover:bg-[#7083A4] duration-300px-4 text-center h-24 my-2 rounded-md flex-col md:flex-row">
-            <p className="text-md sm:text-xl text-white">استبانات</p>
-            <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
+            <p className="text-md sm:text-xl text-white">البريد الالكتروني</p>
+            <MdEmail  className="hidden lg:flex text-3xl text-white" />
           </div>
           <div className="bg-[#334e7d] flex items-center justify-around hover:bg-[#7083A4] duration-300 px-4 text-center h-24 my-2 rounded-md flex-col md:flex-row">
-            <p className="text-md sm:text-xl text-white">استبانات</p>
-            <FaNoteSticky className="hidden lg:flex text-3xl text-white" />
+            <p className="text-md sm:text-xl text-white">منصة الامتحانات الالكترونية </p>
+            <BsFileEarmarkSpreadsheet  className="hidden lg:flex text-3xl text-white" />
           </div>
         </div>
       </div>

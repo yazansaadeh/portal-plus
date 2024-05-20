@@ -101,58 +101,59 @@ function StudentPage() {
   }
 
   return (
-    <div className="flex justify-center sm:justify-between items-start text-center">
-      <SideBar />
-      <div className="flex items-center justify-center flex-col w-11/12">
+    <div className="h-screen flex items-center justify-center ">
+      <SideBar className='hidden sm:flex'/>
+      {/* container */}
+      <div className="flex justify-center flex-col w-screen mr-12 h-8/12 mt-72 md:mt-18">
         <h1 className="font-medium text-lg sm:text-3xl text-[#334e7d]">
-            بوابة الطالب الألكترونية
-          </h1>
-          <div className="bg-[#334e7d] text-white w-11/12 h-44 sm:h-44 rounded-md mt-4 text-center sm:text-right flex justify-center flex-col">
-            <div className="flex items-center p-2">
-              <IoIosNotifications className="text-md sm:text-3xl ml-2" />
-              <p className="text-md sm:text-lg font-medium">
-                {" "}
-                ملاحظات هامة جداً :{" "}
-              </p>
-            </div>
-            <div className="text-md sm:text-xl px-4 font-medium">
-              للطلاب القدامى فقط ستبدأ غرامة التأخير من تاريخ 03-03-2023 للعام
-              الدراسي 2022 الفصل الدراسي الثاني
-            </div>
+          بوابة الطالب الألكترونية
+        </h1>
+        <div className="bg-[#334e7d] text-white w-11/12 h-44 sm:h-44 rounded-md mt-4 text-center sm:text-right flex justify-center flex-col">
+          <div className="flex items-center p-2">
+            <IoIosNotifications className="text-md sm:text-3xl ml-2" />
+            <p className="text-md sm:text-lg font-medium">
+              {" "}
+              ملاحظات هامة جداً :{" "}
+            </p>
+          </div>
+          <div className="text-md sm:text-xl px-4 font-medium">
+            للطلاب القدامى فقط ستبدأ غرامة التأخير من تاريخ 03-03-2023 للعام
+            الدراسي 2022 الفصل الدراسي الثاني
           </div>
         </div>
-        <div className="flex items-center justify-center h-screen flex-col w-full">
-          <div>
-            {content}
-            {declineText}
-          </div>
-          <form onSubmit={handleSubmit}>
+        <div className="flex items-center justify-items-center h-screen flex-col mt-12">
             <div>
-              <label className="cursor-pointer" htmlFor="trainingFile">
-                إختر ملف:
-              </label>
-              <input
-                id="trainingFile"
-                type="file"
-                hidden
-                onChange={handleFileChange}
-              />
+              {content}
+              {declineText}
             </div>
-            {selectedFile ? <p>{selectedFile.name}</p> : ""}
-            <div>
-              <button
-                className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4"
-                type="submit"
-              >
-                إرسال الملف
-              </button>
-            </div>
-            {/* {error ? (
-              <p className=" text-red-700">لا يمكنك ارسال اكثر من ملف واحد</p>
-            ) : (
-              ""
-            )} */}
-          </form>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label className="cursor-pointer" htmlFor="trainingFile">
+                  إختر ملف:
+                </label>
+                <input
+                  id="trainingFile"
+                  type="file"
+                  hidden
+                  onChange={handleFileChange}
+                />
+              </div>
+              {selectedFile ? <p>{selectedFile.name}</p> : ""}
+              <div>
+                <button
+                  className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4"
+                  type="submit"
+                >
+                  إرسال الملف
+                </button>
+              </div>
+              {/* {error ? (
+                <p className=" text-red-700">لا يمكنك ارسال اكثر من ملف واحد</p>
+              ) : (
+                ""
+              )} */}
+            </form>
+        </div>
       </div>
     </div>
   );
