@@ -67,7 +67,9 @@ function StudentPage() {
           <MdDelete className="text-2xl text-[#354d7a]" />
         </Button>
         <div onClick={handleOpenFile} className="pl-6 py-4">
-          <div className="font-bold text-xl mb-2 text-[#354d7a]">{userFile.fileName}</div>
+          <div className="font-bold text-xl mb-2 text-[#354d7a]">
+            {userFile.fileName}
+          </div>
         </div>
       </div>
     );
@@ -121,39 +123,39 @@ function StudentPage() {
             الدراسي 2022 الفصل الدراسي الثاني
           </div>
         </div>
-        <div className="flex items-center justify-items-center h-screen flex-col mt-12">
-            <div>
-              {content}
-              {declineText}
-            </div>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label className="cursor-pointer" htmlFor="trainingFile">
-                  إختر ملف:
-                </label>
-                <input
-                  id="trainingFile"
-                  type="file"
-                  hidden
-                  onChange={handleFileChange}
-                />
-              </div>
-              {selectedFile ? <p>{selectedFile.name}</p> : ""}
-              <div>
-                <button
-                  className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4"
-                  type="submit"
-                >
-                  إرسال الملف
-                </button>
-              </div>
-              {/* {error ? (
-                <p className=" text-red-700">لا يمكنك ارسال اكثر من ملف واحد</p>
-              ) : (
-                ""
-              )} */}
-            </form>
+      </div>
+      <div className="flex items-center justify-center h-screen flex-col w-full">
+        <div>
+          {content}
+          {declineText}
         </div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label className="cursor-pointer" htmlFor="trainingFile">
+              إختر ملف:
+            </label>
+            <input
+              id="trainingFile"
+              type="file"
+              hidden
+              onChange={handleFileChange}
+            />
+          </div>
+          {selectedFile ? <p>{selectedFile.name}</p> : ""}
+          <div>
+            <button
+              className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4"
+              type="submit"
+            >
+              إرسال الملف
+            </button>
+          </div>
+          {error ? (
+            <p className=" text-red-700">لا يمكنك ارسال اكثر من ملف واحد</p>
+          ) : (
+            ""
+          )}
+        </form>
       </div>
     </div>
   );

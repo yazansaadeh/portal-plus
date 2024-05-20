@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import { getUserCourse, deleteCourse } from "../store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IoIosNotifications } from "react-icons/io";
 import SideBar from "./SideBar";
+import OfficeTimeDialog from "./OfficeTimeDialog";
 
 function UserCourse() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dispatch = useDispatch();
   const { userData, userAttendance } = useSelector((state) => {
     return state.course;
@@ -13,6 +15,13 @@ function UserCourse() {
   useEffect(() => {
     dispatch(getUserCourse());
   }, [dispatch]);
+
+  const handleConfirm = () => {
+    setIsDialogOpen(false);
+  };
+  const handleClick = (doctorName) => {
+    setIsDialogOpen(true);
+  };
 
   let showDeleteBtn = "";
   let content;
@@ -48,8 +57,9 @@ function UserCourse() {
             {row.course.time}
           </p>
           <p
+            onClick={() => handleClick(row.course.doctorName)}
             style={{ color: index % 2 === 0 ? "#334e7d" : "white" }}
-            className="w-1/5"
+            className="w-1/5 cursor-pointer"
           >
             {row.course.doctorName}
           </p>
@@ -77,6 +87,7 @@ function UserCourse() {
   return (
     <div className="h-screen flex  justify-center ">
       <SideBar className="hidden sm:flex" />
+      <OfficeTimeDialog open={isDialogOpen} onConfirm={handleConfirm} />
       {/* container */}
       <div className="flex flex-col w-screen mr-12 h-8/12">
         <h1 className="font-medium text-lg sm:text-3xl text-[#334e7d]">
