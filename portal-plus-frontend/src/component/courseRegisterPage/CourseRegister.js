@@ -117,7 +117,6 @@ function CourseRegister() {
   } else {
     content = <p>you are not registered in any course</p>;
   }
-  console.log(userData);
 
   return (
     <div className="flex justify-between items-start text-center">

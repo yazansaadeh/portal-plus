@@ -8,6 +8,7 @@ import { FaCheck } from "react-icons/fa";
 import { checkTrainingFile } from "../../store";
 import { removeFileInDoctorPage } from "../../store";
 import DeclineTextDialog from "./DeclineTextDialog";
+import { IoIosNotifications } from "react-icons/io";
 
 function DoctorPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -49,7 +50,6 @@ function DoctorPage() {
             <Button
               onClick={() => handleDeclineClick(file.fileName)}
               color="error"
-              
             >
               <TiDelete className="text-2xl" />
             </Button>
@@ -77,15 +77,17 @@ function DoctorPage() {
               file.showInDoctorPage ? "flex" : "hidden"
             }`}
           >
-            <button
-              onClick={() => handleDelete(file.fileName)}
-              className="absolute top-0 right-0 p-2 text-black rounded-full"
-            >
-              <TiDelete className="text-2xl" />
-            </button>
-            <div className=" pl-6 py-4">
-              <div className="font-bold text-xl mb-2">
-                لقد تمت الموافقة على ملف التدريب
+            <div className="flex items-center justify-between text-center h-24 rounded-md text-[#334e7d]">
+              <button
+                onClick={() => handleDelete(file.fileName)}
+                className="absolute top-0 right-0 p-2 text-black rounded-full mb-12"
+              >
+                <TiDelete className="text-2xl ml-12" />
+              </button>
+              <div className=" pl-6 py-4">
+                <div className="font-bold text-xl mb-2">
+                  لقد تمت الموافقة على ملف التدريب
+                </div>
               </div>
             </div>
           </div>
@@ -98,15 +100,17 @@ function DoctorPage() {
               file.showInDoctorPage ? "flex" : "hidden"
             }`}
           >
-            <button
-              onClick={() => handleDelete(file.fileName)}
-              className="absolute top-0 right-0 p-2 text-black rounded-full"
-            >
-              <TiDelete className="text-2xl" />
-            </button>
-            <div className="pl-6 py-4">
-              <div className="font-bold text-xl mb-2">
-                لقد تم رفض ملف التدريب
+            <div className="flex items-center justify-between text-center h-24 rounded-md text-[#334e7d]">
+              <button
+                onClick={() => handleDelete(file.fileName)}
+                className="absolute top-0 right-0 p-2 text-black rounded-full mb-12"
+              >
+                <TiDelete className="text-2xl ml-12" />
+              </button>
+              <div className="pl-6 py-4">
+                <div className="font-bold text-xl mb-2">
+                  لقد تم رفض ملف التدريب
+                </div>
               </div>
             </div>
           </div>
@@ -117,11 +121,27 @@ function DoctorPage() {
     content = <div>لا يوجد حاليا اي ملفات تدريب</div>;
   }
   return (
-    <div className="flex justify-between items-start text-center ">
-      <SideBar />
-
-      <div style={{position:'absolute',top:'50%',left:'40%',transform:'translate(-50%,-50%)'}}>
-        {content}
+    <div className="h-screen flex items-center justify-center ">
+      <SideBar className="hidden sm:flex" />
+      {/* container */}
+      <div className="flex justify-center flex-col w-screen mr-12 h-8/12 mb-80 md:mt-18">
+        <h1 className="font-medium text-lg sm:text-3xl text-[#334e7d]">
+          بوابة الطالب الألكترونية
+        </h1>
+        <div className="bg-[#334e7d] text-white w-11/12 h-44 sm:h-44 rounded-md mt-4 text-center sm:text-right flex justify-center flex-col">
+          <div className="flex items-center p-2">
+            <IoIosNotifications className="text-md sm:text-3xl ml-2" />
+            <p className="text-md sm:text-lg font-medium">
+              {" "}
+              ملاحظات هامة جداً :{" "}
+            </p>
+          </div>
+          <div className="text-md sm:text-xl px-4 font-medium">
+            للطلاب القدامى فقط ستبدأ غرامة التأخير من تاريخ 03-03-2023 للعام
+            الدراسي 2022 الفصل الدراسي الثاني
+          </div>
+        </div>
+        <div className="mt-12 flex items-center justify-center ">{content}</div>
       </div>
     </div>
   );

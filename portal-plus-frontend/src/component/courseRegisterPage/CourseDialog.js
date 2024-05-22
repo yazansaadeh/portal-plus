@@ -14,7 +14,7 @@ import { getCourses } from "../../store";
 
 const CourseDialog = ({ open, onClose, setValue }) => {
   const dispatch = useDispatch();
-  const { error, data, isLoading } = useSelector((state) => {
+  const { error, allCourses, isLoading } = useSelector((state) => {
     return state.course;
   });
   useEffect(() => {
@@ -40,8 +40,8 @@ const CourseDialog = ({ open, onClose, setValue }) => {
     );
   } else if (error) {
     content = <div>There is an error</div>;
-  } else if (data.length > 0) {
-    content = data.map((row, index) => {
+  } else if (allCourses.length > 0) {
+    content = allCourses.map((row, index) => {
       return (
         <TableRow
           key={index}

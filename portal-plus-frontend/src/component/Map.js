@@ -251,72 +251,75 @@ function Map() {
   console.log(fromLocationCoordinates);
   console.log(toLocationCoordinates);
   return (
-    <div className="flex justify-between items-start text-center" >
-      <div style={{zIndex:'999'}}>
-      <div className="w-72 flex items-center justify-between hidden sm:flex" style={{zIndex:'999'}}>
-      {/* sidebar */}
-      <div className="flex h-screen">
+    <div className="flex justify-between items-start text-center">
+      <div style={{ zIndex: "999" }}>
         <div
-          className={`bg-[#334E7D] p-5 pt-8 w-48 flex transition-all duration-300 ease-in-out sm:w-72 rounded-md mr-4  flex-col`}
+          className="w-72 flex items-center justify-between hidden sm:flex"
+          style={{ zIndex: "999" }}
         >
-          <div className="inline-flex items-center h-12">
-            <img
-              src="/userPfp.jpg"
-              className="rounded-full cursor-pointer duration-300 w-8 h-8 mr-3 sm:h-12 sm:w-12"
-              alt="pfpImage"
-            ></img>
-            <div className="flex  flex-col mr-4">
-              <h1
-                className={`text-white font-medium text-sm sm:text-lg w-full`}
-              >
-                {name}
-              </h1>
-              <h3
-                className={`text-white font-medium text-sm duration-300 p-1 text-center`}
-              >
-                2035978
-              </h3>
+          {/* sidebar */}
+          <div className="flex h-screen">
+            <div
+              className={`bg-[#334E7D] p-5 pt-8 w-48 flex transition-all duration-300 ease-in-out sm:w-72 rounded-md mr-4  flex-col`}
+            >
+              <div className="inline-flex items-center h-12">
+                <img
+                  src="/userPfp.jpg"
+                  className="rounded-full cursor-pointer duration-300 w-8 h-8 mr-3 sm:h-12 sm:w-12"
+                  alt="pfpImage"
+                ></img>
+                <div className="flex  flex-col mr-4">
+                  <h1
+                    className={`text-white font-medium text-sm sm:text-lg w-full`}
+                  >
+                    {name}
+                  </h1>
+                  <h3
+                    className={`text-white font-medium text-sm duration-300 p-1 text-center`}
+                  >
+                    2035978
+                  </h3>
+                </div>
+              </div>
+              <ul className="pt-2">
+                {menus.map((menu, index) => (
+                  <li
+                    key={index}
+                    className="text-xs sm:text-md flex-items-center gap-x-4 cursor-pointer rounded-md mt-2 bg-white text-[#334E7D]  duration-300 p-2 flex  items-center justify-between flex-col mx-2"
+                    onClick={() => toggleSubMenu(index)}
+                  >
+                    <div className="flex items-center justify-between flex-row w-full">
+                      <span>
+                        <FaRegMoneyBill1 className="text-sm text-[#334E7D]" />
+                      </span>
+                      <span className="text-[#334E7D] w-full text-center">
+                        {menu.title}
+                      </span>
+                      <BsArrowDown className="text-sm text-[#334E7D]" />
+                    </div>
+                    <div className="flex items-center justify-center text-center">
+                      {menu.submenu && subMenu[index] && (
+                        <ul className="ml-4 w-full flex items-center justify-center flex-col">
+                          {menu.submenuItems.map((submenuItem, subIndex) => (
+                            <li
+                              key={subIndex}
+                              className="text-[#334E7D] text-xs sm:text-md cursor-pointer rounded-md mt-2  duration-300 p-2 hover:text-white hover:bg-[#334E7D] w-40 sm:w-64"
+                              onClick={() => handleClick(submenuItem.path)}
+                            >
+                              <span>{submenuItem.title}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <ul className="pt-2">
-            {menus.map((menu, index) => (
-              <li
-                key={index}
-                className="text-xs sm:text-md flex-items-center gap-x-4 cursor-pointer rounded-md mt-2 bg-white text-[#334E7D]  duration-300 p-2 flex  items-center justify-between flex-col mx-2"
-                onClick={() => toggleSubMenu(index)}
-              >
-                <div className="flex items-center justify-between flex-row w-full">
-                  <span>
-                    <FaRegMoneyBill1 className="text-sm text-[#334E7D]" />
-                  </span>
-                  <span className="text-[#334E7D] w-full text-center">
-                    {menu.title}
-                  </span>
-                  <BsArrowDown className="text-sm text-[#334E7D]" />
-                </div>
-                <div className="flex items-center justify-center text-center">
-                  {menu.submenu && subMenu[index] && (
-                    <ul className="ml-4 w-full flex items-center justify-center flex-col">
-                      {menu.submenuItems.map((submenuItem, subIndex) => (
-                        <li
-                          key={subIndex}
-                          className="text-[#334E7D] text-xs sm:text-md cursor-pointer rounded-md mt-2  duration-300 p-2 hover:text-white hover:bg-[#334E7D] w-40 sm:w-64"
-                          onClick={() => handleClick(submenuItem.path)}
-                        >
-                          <span>{submenuItem.title}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
-    </div>
-      </div>
-      <div className="w-full mr-0 md:mr-4 h-screen" style={{zIndex:1}}>
+      <div className="w-full mr-0 md:mr-4 h-screen" style={{ zIndex: 1 }}>
         <div className="flex items-center justify-around flex-col py-6">
           <div>
             <label htmlFor="buildings">من:</label>
@@ -364,7 +367,9 @@ function Map() {
               })}
             </select>
           </div>
-          <button className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4">اظهار الطريق</button>
+          <button className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4">
+            اظهار الطريق
+          </button>
         </div>
         <MapContainer
           center={userPosition}

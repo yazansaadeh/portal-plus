@@ -15,6 +15,7 @@ const courseSlice = createSlice({
     isLoading: false,
     error: null,
     userAttendance: [],
+    allCourses: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -49,7 +50,7 @@ const courseSlice = createSlice({
     builder.addCase(getCourses.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      state.data.push(...action.payload);
+      state.allCourses = action.payload;
     });
     builder.addCase(getCourses.rejected, (state, action) => {
       state.isLoading = false;
