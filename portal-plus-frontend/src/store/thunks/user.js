@@ -46,8 +46,8 @@ const getDoctorName = createAsyncThunk("/api/getDoctorName", async () => {
 
 const getDoctorOfficeTime = createAsyncThunk(
   "/api/getDoctorOfficeTime",
-  async () => {
-    const res = await axios.get("/api/getDoctorOfficeTime");
+  async (values) => {
+    const res = await axios.post("/api/getDoctorOfficeTime", values);
     return res.data;
   }
 );

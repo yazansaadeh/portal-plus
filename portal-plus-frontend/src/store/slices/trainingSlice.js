@@ -64,6 +64,7 @@ const trainingSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.userFile = null;
+      state.data = null;
     });
     builder.addCase(deleteTrainingFile.rejected, (state, action) => {
       state.isLoading = false;

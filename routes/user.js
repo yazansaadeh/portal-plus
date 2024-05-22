@@ -9,8 +9,8 @@ router.get("/create_user", async (req, res) => {
   const user = new User({
     rule: "student",
     major: "software",
-    username: "3",
-    name: "يزن عبدالله",
+    username: "5",
+    name: "ايهم صالح",
   });
   const newUser = await User.register(user, "44");
   res.send(newUser);
@@ -68,10 +68,19 @@ router.get("/api/getDoctorName", async (req, res) => {
   res.send(doctorName);
 });
 
-router.get("/api/getDoctorOfficeTime", async (req, res) => {
+router.post("/api/getDoctorOfficeTime", async (req, res) => {
   const { name } = req.body;
-  const doctor = await User.findOne({ name });
-  res.send({ officeHour: doctor.officeHour, officeDay: doctor.officeDay });
+  console.log(`name is ${name}`);
+  try {
+    const doctor = await User.findOne({ name });
+    if (!doctor) {
+      return res.status(404).send({ error: "Doctor not found" });
+    }
+    res.send({ officeHour: doctor.officeHour, officeDay: doctor.officeDay });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Internal Server Error" });
+  }
 });
 
 module.exports = router;

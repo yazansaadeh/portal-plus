@@ -24,7 +24,8 @@ const userSlice = createSlice({
     officeDay: "",
     officeHour: "",
     doctorsName: [],
-    officeTime: null,
+    getOfficeHour: "",
+    getOfficeDay: "",
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -142,7 +143,8 @@ const userSlice = createSlice({
     builder.addCase(getDoctorOfficeTime.fulfilled, (state, action) => {
       state.error = null;
       state.isLoading = false;
-      state.officeTime = action.payload;
+      state.getOfficeHour = action.payload.officeHour;
+      state.getOfficeDay = action.payload.officeDay;
     });
     builder.addCase(getDoctorOfficeTime.pending, (state, action) => {
       state.isLoading = true;

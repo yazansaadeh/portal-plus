@@ -8,6 +8,7 @@ import OfficeTimeDialog from "./OfficeTimeDialog";
 
 function UserCourse() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [doctorName, setDoctorName] = useState("");
   const dispatch = useDispatch();
   const { userData, userAttendance } = useSelector((state) => {
     return state.course;
@@ -20,6 +21,7 @@ function UserCourse() {
     setIsDialogOpen(false);
   };
   const handleClick = (doctorName) => {
+    setDoctorName(doctorName);
     setIsDialogOpen(true);
   };
 
@@ -87,7 +89,11 @@ function UserCourse() {
   return (
     <div className="h-screen flex  justify-center ">
       <SideBar className="hidden sm:flex" />
-      <OfficeTimeDialog open={isDialogOpen} onConfirm={handleConfirm} />
+      <OfficeTimeDialog
+        open={isDialogOpen}
+        onConfirm={handleConfirm}
+        doctorName={doctorName}
+      />
       {/* container */}
       <div className="flex flex-col w-screen mr-12 h-8/12">
         <h1 className="font-medium text-lg sm:text-3xl text-[#334e7d]">

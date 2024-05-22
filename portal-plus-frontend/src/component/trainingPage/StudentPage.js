@@ -23,6 +23,7 @@ function StudentPage() {
   }, [dispatch, data]);
 
   const handleFileChange = (event) => {
+    console.log(event.target.files);
     setSelectedFile(event.target.files[0]);
   };
 
@@ -58,6 +59,7 @@ function StudentPage() {
   const handleShowDeclineText = (text) => {
     setDeclineText(text);
   };
+  console.log("rrr");
 
   let content;
   if (userFile && userFile.fileStatus === "null") {
@@ -104,7 +106,7 @@ function StudentPage() {
 
   return (
     <div className="h-screen flex items-center justify-center ">
-      <SideBar className='hidden sm:flex'/>
+      <SideBar className="hidden sm:flex" />
       {/* container */}
       <div className="flex justify-center flex-col w-screen mr-12 h-8/12 mt-72 md:mt-18">
         <h1 className="font-medium text-lg sm:text-3xl text-[#334e7d]">
@@ -123,39 +125,39 @@ function StudentPage() {
             الدراسي 2022 الفصل الدراسي الثاني
           </div>
         </div>
-      </div>
-      <div className="flex items-center justify-center h-screen flex-col w-full">
-        <div>
-          {content}
-          {declineText}
+        <div className="flex items-center justify-items-center h-screen flex-col mt-12">
+          <div>
+            {content}
+            {declineText}
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label className="cursor-pointer" htmlFor="trainingFile">
+                إختر ملف:
+              </label>
+              <input
+                id="trainingFile"
+                type="file"
+                hidden
+                onChange={handleFileChange}
+              />
+            </div>
+            {selectedFile ? <p>{selectedFile.name}</p> : ""}
+            <div>
+              <button
+                className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4"
+                type="submit"
+              >
+                إرسال الملف
+              </button>
+            </div>
+            {error ? (
+              <p className=" text-red-700">لا يمكنك ارسال اكثر من ملف واحد</p>
+            ) : (
+              ""
+            )}
+          </form>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label className="cursor-pointer" htmlFor="trainingFile">
-              إختر ملف:
-            </label>
-            <input
-              id="trainingFile"
-              type="file"
-              hidden
-              onChange={handleFileChange}
-            />
-          </div>
-          {selectedFile ? <p>{selectedFile.name}</p> : ""}
-          <div>
-            <button
-              className="bg-[#354d7a] text-white rounded-xl px-5 py-1 flex hover:bg-white hover:text-[#354d7a] font-medium border-solid border-2 border-[#354d7a] transition duration-150 ease-in m-4"
-              type="submit"
-            >
-              إرسال الملف
-            </button>
-          </div>
-          {error ? (
-            <p className=" text-red-700">لا يمكنك ارسال اكثر من ملف واحد</p>
-          ) : (
-            ""
-          )}
-        </form>
       </div>
     </div>
   );
