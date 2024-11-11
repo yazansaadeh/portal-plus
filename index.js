@@ -16,7 +16,7 @@ const app = express();
 
 mongoose.set("strictQuery", true);
 mongoose
-  .connect("mongodb://127.0.0.1:27017/portal-plus")
+  .connect("mongodb+srv://yazansaada0:XaSGmJi09f4UIXRq@portalplus.be81a.mongodb.net/?retryWrites=true&w=majority&appName=portalPlus")
   .then(() => {
     console.log("connect sucessfuly");
   })
