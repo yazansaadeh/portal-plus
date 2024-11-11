@@ -10,6 +10,7 @@ const userRouter = require("./routes/user");
 const courseRouter = require("./routes/course");
 const attendanceRouter = require("./routes/attendance");
 const trainingRouter = require("./routes/training");
+const path = require("path");
 
 const app = express();
 
@@ -46,5 +47,11 @@ app.use(userRouter);
 app.use(courseRouter);
 app.use(attendanceRouter);
 app.use(trainingRouter);
+
+app.use(express.static(path.join(__dirname, "portal-plus-frontend","build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "portal-plus-frontend","build", "index.html"));
+});
 
 app.listen(5000);
