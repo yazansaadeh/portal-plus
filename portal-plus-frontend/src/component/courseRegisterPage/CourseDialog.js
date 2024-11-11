@@ -17,6 +17,7 @@ const CourseDialog = ({ open, onClose, setValue }) => {
   const { error, allCourses, isLoading } = useSelector((state) => {
     return state.course;
   });
+  //this is for getting all courses from the data base
   useEffect(() => {
     if (open) {
       dispatch(getCourses());
@@ -30,6 +31,7 @@ const CourseDialog = ({ open, onClose, setValue }) => {
 
   let content;
   if (isLoading) {
+    //the Skeleton show before the data came
     content = (
       <Skeleton
         variant="rectangular"
@@ -39,8 +41,10 @@ const CourseDialog = ({ open, onClose, setValue }) => {
       />
     );
   } else if (error) {
+    //this show when there is an error
     content = <div>There is an error</div>;
   } else if (allCourses.length > 0) {
+    //this is the real data contain all the courses in array and loop the array
     content = allCourses.map((row, index) => {
       return (
         <TableRow
@@ -72,6 +76,8 @@ const CourseDialog = ({ open, onClose, setValue }) => {
     // Render a placeholder or message when there is no data
     content = <div>No data available</div>;
   }
+
+  //the title for the table and show the courses under it
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogContent>
